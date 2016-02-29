@@ -20,7 +20,6 @@ namespace WXLWeb
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-
             );
             //新增 id.html结尾路由
             routes.MapRoute(

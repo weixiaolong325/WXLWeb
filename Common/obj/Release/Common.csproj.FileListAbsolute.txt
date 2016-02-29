@@ -1,0 +1,4 @@
+F:\C#\PRO\WXLWeb_v2\Common\bin\Release\Common.dll
+F:\C#\PRO\WXLWeb_v2\Common\bin\Release\Common.pdb
+F:\C#\PRO\WXLWeb_v2\Common\obj\Release\Common.dll
+F:\C#\PRO\WXLWeb_v2\Common\obj\Release\Common.pdb

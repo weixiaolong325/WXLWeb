@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WXLWeb.Models;
+using System.Data;
+using System.Data.SqlClient;
+using WXLWeb.ViewModels;
+using Common;
 
 namespace WXLWeb.Controllers
 {
@@ -26,10 +31,68 @@ namespace WXLWeb.Controllers
         {
             return View();
         }
-        //文章
+        //技术分享
         public ActionResult Skill()
         {
-            return View();
+            return View(articleView(1,1));
+        }
+        //生活
+        public ActionResult Life()
+        {
+
+            return View(articleView(2,1));
+        }
+        //学习
+        public ActionResult Learn()
+        {
+            return View(articleView(3,1));
+        }
+        /// <summary>
+        /// 文章列表，返回一个文章集合
+        /// </summary>
+        /// <param name="type1">文章类别</param>
+        /// <param name="pageNum">第几页</param>
+        /// <returns></returns>
+        private ArticleView articleView(int type1,int pageNum)
+        {
+            ArticleView articleList = new ArticleView();
+            List<Article> articles = new List<Article>();
+
+            int linNum = 10;//一页显示多少条记录
+            int Type1 =type1 ;//类别为技术分享
+            articleList.pageNum = pageNum;
+            SqlParameter[] param ={new SqlParameter("@LineNum",linNum),
+                                     new SqlParameter("@pageNum",pageNum),
+                                  new SqlParameter("@Type1",Type1)};
+            //总页数
+            string sql =string.Format("select COUNT(1) from WXL_Article where Type1={0}",type1);
+            int pageNumSum = Convert.ToInt32(SQLHelper.ExecuteScalar(sql, CommandType.Text));
+            articleList.pageNumSum = pageNumSum;
+            //文章列表
+            using (SqlDataReader sdr = SQLHelper.ExecuteReader("Long_ArticleToPage", CommandType.StoredProcedure, param))
+            {
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        Article article = new Article();
+                        article.ArticleId = Convert.ToInt32(sdr["ArticleId"]);
+                        article.Title = sdr["Title"].ToString();
+                        article.Type1 = Convert.ToInt32(sdr["Type1"]);
+                        article.Type2 = sdr["Type2"].ToString();
+                        article.CreateTime = Convert.ToDateTime(sdr["CreateTime"]).ToString("yyyy-MM-dd HH:mm:ss");
+                        article.UserId = sdr["UserId"].ToString();
+                        article.UserName = sdr["UserName"].ToString();
+                        article.Tag = sdr["Tag"].ToString();
+                        article.LookNum = Convert.ToInt32(sdr["LookNum"]);
+                        article.Abstract = sdr["Abstract"].ToString();
+
+                        articles.Add(article);
+                    }
+                    articleList.Articles = articles;
+                }
+            }
+            return articleList;
         }
     }
 }

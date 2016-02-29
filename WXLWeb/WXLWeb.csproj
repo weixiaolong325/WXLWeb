@@ -134,6 +134,7 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHelper.cs" />
+    <Compile Include="ViewModels\ArticleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Base.css" />
@@ -440,6 +441,8 @@
     <Content Include="Views\Home\AboutMe.cshtml" />
     <Content Include="Views\WebManagement\AddArticle.cshtml" />
     <Content Include="Views\Home\Skill.cshtml" />
+    <Content Include="Views\Home\Life.cshtml" />
+    <Content Include="Views\Home\Learn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -447,6 +450,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{878b664a-06b7-4634-9275-c36e20afbc4c}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

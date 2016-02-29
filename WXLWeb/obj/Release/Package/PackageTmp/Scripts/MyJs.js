@@ -24,8 +24,18 @@ function active_li2() {
     var a = $("#nav_ul a");
     a[1].setAttribute("class", "active_li");
 }
+//生活记录
+function active_li3() {
+    var a = $("#nav_ul a");
+    a[2].setAttribute("class", "active_li");
+}
 //技术分享
 function active_li4() {
     var a = $("#nav_ul a");
     a[3].setAttribute("class", "active_li");
+}
+//学海无涯
+function active_li5() {
+    var a = $("#nav_ul a");
+    a[4].setAttribute("class", "active_li");
 }

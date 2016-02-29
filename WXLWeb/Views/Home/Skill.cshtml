@@ -1,14 +1,14 @@
 ﻿@{
     Layout = null;
 }
-
+@model WXLWeb.ViewModels.ArticleView
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
      <link rel="Shortcut Icon" href="/Images/title.ico" />
-    <title>Skill</title>
+    <title>技术分享</title>
     <link href="~/Content/Base.css" rel="stylesheet" />
      <script src=" http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
      <script src="~/Scripts/MyJs.js"></script>
@@ -23,48 +23,23 @@
     </div>
  <div id="s_body">
         <div id="s_body_left">
+            @if(Model.Articles!=null)
+            {
+            foreach(var article in Model.Articles)
+            {
             <div class="article_list">
-                 <div class="article_list_title"><a class="article_list_title" href="javascript:void()">Linq入门到精通</a></div>
-                <div class="article_list_info">发布时间:2016-02-26<span class="sp_blank"></span> 
-                    作者: <a class="s_authname" href="javascript:void()">韦小龙</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">Linq</a>]</div>
+                 <div class="article_list_title"><a class="article_list_title" href="javascript:void()">@article.Title</a></div>
+                <div class="article_list_info">发布时间:@article.CreateTime<span class="sp_blank"></span> 
+                    作者: <a class="s_authname" href="javascript:void()">@article.UserName</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">@article.Type2</a>]</div>
                 <div class="article_list_content">
-                LINQ，语言集成查询（Language Integrated Query）是一组用于c#和Visual Basic语言的扩展。它允许编写C#或者Visual Basic代码以查询数据库相同的方式操作内存数据......
+              摘要: @article.Abstract...
                     <a class="article_readmore" href="javascript:void()">阅读全文</a>
                 </div>
             </div> 
-
-            <div class="article_list">
-                 <div class="article_list_title"><a class="article_list_title" href="javascript:void()">Linq入门到精通</a></div>
-                <div class="article_list_info">发布时间:2016-02-26<span class="sp_blank"></span> 
-                    作者: <a class="s_authname" href="javascript:void()">韦小龙</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">Linq</a>]</div>
-                <div class="article_list_content">
-                LINQ，语言集成查询（Language Integrated Query）是一组用于c#和Visual Basic语言的扩展。它允许编写C#或者Visual Basic代码以查询数据库相同的方式操作内存数据......
-                    <a class="article_readmore" href="javascript:void()">阅读全文</a>
-                </div>
-            </div> 
-
-            <div class="article_list">
-                 <div class="article_list_title"><a class="article_list_title" href="javascript:void()">Linq入门到精通</a></div>
-                <div class="article_list_info">发布时间:2016-02-26<span class="sp_blank"></span> 
-                    作者: <a class="s_authname" href="javascript:void()">韦小龙</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">Linq</a>]</div>
-                <div class="article_list_content">
-                LINQ，语言集成查询（Language Integrated Query）是一组用于c#和Visual Basic语言的扩展。它允许编写C#或者Visual Basic代码以查询数据库相同的方式操作内存数据......
-                    <a class="article_readmore" href="javascript:void()">阅读全文</a>
-                </div>
-            </div> 
-
-             <div class="article_list">
-                 <div class="article_list_title"><a class="article_list_title" href="javascript:void()">Linq入门到精通</a></div>
-                <div class="article_list_info">发布时间:2016-02-26<span class="sp_blank"></span> 
-                    作者: <a class="s_authname" href="javascript:void()">韦小龙</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">Linq</a>]</div>
-                <div class="article_list_content">
-                LINQ，语言集成查询（Language Integrated Query）是一组用于c#和Visual Basic语言的扩展。它允许编写C#或者Visual Basic代码以查询数据库相同的方式操作内存数据......
-                    <a class="article_readmore" href="javascript:void()">阅读全文</a>
-                </div>
-            </div> 
-            <div style="text-align:center;">第<span style="color:#00ff21">1</span>/21页&nbsp;<a href="javascript:void()">首页</a>
-                &nbsp;<a href="javascript:void()">上一页</a>&nbsp;1<a href="javascript:void()">2</a>
-            </div>
+            }
+            }
+            else
+            { <p style="text-align:center;">暂无内容~</p>}
                  </div>
      <div id="s_body_right"><h2 style="text-align:center">分类</h2>
          <p style="margin-left:10px;"><a href="javascript:void()">1.ASP.NET</a></p>

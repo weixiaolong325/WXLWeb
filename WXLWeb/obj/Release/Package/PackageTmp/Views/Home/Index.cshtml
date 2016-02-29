@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <meta name="viewport" content="width=device-width" />
+    <link rel="Shortcut Icon" href="/Images/title.ico" />
+    <title>韦小龙个人网站</title>
+    <link href="~/Content/Base.css" rel="stylesheet" />
+    <script src=" http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
+    <script src="~/Scripts/MyJs.js">
+    </script>
+</head>
+<body onload="active_li1()">
+    <div id="z_weather">
+        <iframe width="290" scrolling="no" height="18" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&color=%230070C0&icon=1&wind=1&num=1"></iframe>
+    </div>
+      @{Html.RenderPartial("Head");}
+    <div class="jiathis_style" style="margin-top:10px">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_tools_1"></a>
+	<a class="jiathis_button_tools_2"></a>
+	<a class="jiathis_button_tools_3"></a>
+	<a class="jiathis_button_tools_4"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+     <div id="I_content" style="margin-top:40px;font-size:20px;padding-top:20px;border-top:1px solid #808080">
+        
+         <div class="I_content_right">  <b>欢迎访问韦小龙的个人网站，这个网站主要是用来分享和记录开发上遇到的问题和技术,还有记录生活的点滴。目前在做留言板功能，其它功能请期待~</b></div>
+         <div class="clear"></div>
+      
+     </div>
+    <div id="z_content" style="height:300px;border-bottom:1px dashed #999;"></div>
+    <!-- JiaThis Button BEGIN -->
+
+    <div id="about_web">@Html.Raw("@") CopyRight 2016 www.wxiaolong.com<span class="sp_blank"></span>|<span class="sp_blank"></span><a href="@Url.Action("AboutMe")">联系我</a><span class="sp_blank"></span>粤ICP备15085148号-1</div>
+</body>
+</html>

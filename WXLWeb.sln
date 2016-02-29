@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WXLWeb", "WXLWeb\WXLWeb.csproj", "{86AF2234-1146-4744-85F1-A45BB606DE09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WXLWeb.Tests", "WXLWeb.Tests\WXLWeb.Tests.csproj", "{32D7CF7F-3EEB-461F-9E4A-FE78F63E5484}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86AF2234-1146-4744-85F1-A45BB606DE09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86AF2234-1146-4744-85F1-A45BB606DE09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86AF2234-1146-4744-85F1-A45BB606DE09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86AF2234-1146-4744-85F1-A45BB606DE09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32D7CF7F-3EEB-461F-9E4A-FE78F63E5484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D7CF7F-3EEB-461F-9E4A-FE78F63E5484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32D7CF7F-3EEB-461F-9E4A-FE78F63E5484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D7CF7F-3EEB-461F-9E4A-FE78F63E5484}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

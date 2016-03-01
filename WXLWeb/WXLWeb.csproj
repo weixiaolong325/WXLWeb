@@ -126,18 +126,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="commHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHelper.cs" />
     <Compile Include="ViewModels\ArticleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Base.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -194,6 +198,11 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Login\HeadBack.jpg" />
+    <Content Include="Images\Login\login-btn.gif" />
+    <Content Include="Images\Login\panel-c.gif" />
+    <Content Include="Images\Login\panel-f.gif" />
+    <Content Include="Images\Login\panel-h.gif" />
     <Content Include="Plug\Kindeditor\asp.net\file_manager_json.ashx" />
     <Content Include="Plug\Kindeditor\asp.net\upload_json.ashx" />
     <None Include="Properties\PublishProfiles\wxlWeb.pubxml" />
@@ -443,6 +452,7 @@
     <Content Include="Views\Home\Skill.cshtml" />
     <Content Include="Views\Home\Life.cshtml" />
     <Content Include="Views\Home\Learn.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

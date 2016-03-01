@@ -9,6 +9,11 @@ namespace WXLWeb
 {
     public class commHelper
     {
+        /// <summary>
+        /// 根据用户Id返回用户名
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         public static string getUserName(string UserId)
         {
             string name = string.Empty;

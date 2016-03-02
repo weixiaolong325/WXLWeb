@@ -14,6 +14,13 @@ clear:both;
     display: inline-block;
     width: 10px;
 }
+ /*错误消息*/
+ .lbl_must {
+    color:#f00;
+    font-size:12px;
+    font-family: verdana,sans-serif;
+   
+}
  .active_li {
 color:#ff6a00 !important;
 }

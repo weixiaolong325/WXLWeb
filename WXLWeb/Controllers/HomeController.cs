@@ -32,9 +32,19 @@ namespace WXLWeb.Controllers
             return View();
         }
         //技术分享
-        public ActionResult Skill()
+        public ActionResult Skill(string id)
         {
-            return View(articleView(1,1));
+            int p = 1;
+            if (id != null)
+            {
+                int isint;
+                if (!int.TryParse(id, out isint))
+                {
+                    return Content("查看内容不存在");
+                }
+                p = Convert.ToInt32(id) < 1 ? 1 : Convert.ToInt32(id);
+            }
+            return View(articleView(1,p));
         }
         //生活
         public ActionResult Life()
@@ -58,16 +68,21 @@ namespace WXLWeb.Controllers
             ArticleView articleList = new ArticleView();
             List<Article> articles = new List<Article>();
 
-            int linNum = 10;//一页显示多少条记录
-            int Type1 =type1 ;//类别为技术分享
+            int linNum = 5;//一页显示多少条记录
+            int Type1 =type1 ;//类别为
+            string sql = string.Format("select COUNT(1) from WXL_Article where Type1={0} and Isdel=0", type1);
+            //总条数
+            int NumSum = Convert.ToInt32(SQLHelper.ExecuteScalar(sql, CommandType.Text));
+            //总页数
+            int pageNumSum = NumSum % linNum > 0 ? NumSum / linNum + 1 : NumSum / linNum;
+            if (pageNum > pageNumSum) pageNum = pageNumSum;
+            articleList.pageNumSum = pageNumSum;
+            //当前页数
             articleList.pageNum = pageNum;
             SqlParameter[] param ={new SqlParameter("@LineNum",linNum),
                                      new SqlParameter("@pageNum",pageNum),
                                   new SqlParameter("@Type1",Type1)};
-            //总页数
-            string sql =string.Format("select COUNT(1) from WXL_Article where Type1={0}",type1);
-            int pageNumSum = Convert.ToInt32(SQLHelper.ExecuteScalar(sql, CommandType.Text));
-            articleList.pageNumSum = pageNumSum;
+            ViewBag.page =new MvcHtmlString(commHelper.page(pageNum, pageNumSum, "/Home/Skill", "id", 5));
             //文章列表
             using (SqlDataReader sdr = SQLHelper.ExecuteReader("Long_ArticleToPage", CommandType.StoredProcedure, param))
             {

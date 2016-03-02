@@ -531,11 +531,6 @@
     <Content Include="Plug\EasyUi\themes\metro\window.css" />
     <Content Include="Plug\Kindeditor\asp.net\file_manager_json.ashx" />
     <Content Include="Plug\Kindeditor\asp.net\upload_json.ashx" />
-    <Content Include="Plug\EasyUi\themes\black\images\Thumbs.db" />
-    <Content Include="Plug\EasyUi\themes\bootstrap\images\Thumbs.db" />
-    <Content Include="Plug\EasyUi\themes\default\images\Thumbs.db" />
-    <Content Include="Plug\EasyUi\themes\gray\images\Thumbs.db" />
-    <Content Include="Plug\EasyUi\themes\metro\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\wxlWeb.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\%28zhaoxi.net%29.gif" />

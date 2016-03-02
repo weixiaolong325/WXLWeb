@@ -32,30 +32,52 @@ namespace WXLWeb.Controllers
             return View();
         }
         //技术分享
-        public ActionResult Skill(string id)
+        public ActionResult Skill(string page)
         {
+            //默认第一页
             int p = 1;
-            if (id != null)
+            if (page != null)
             {
                 int isint;
-                if (!int.TryParse(id, out isint))
+                if (!int.TryParse(page, out isint))
                 {
                     return Content("查看内容不存在");
                 }
-                p = Convert.ToInt32(id) < 1 ? 1 : Convert.ToInt32(id);
+                p = Convert.ToInt32(page) < 1 ? 1 : Convert.ToInt32(page);
             }
-            return View(articleView(1,p));
+            return View(articleView(1,p,"/Home/Skill"));
         }
         //生活
-        public ActionResult Life()
+        public ActionResult Life(string page)
         {
-
-            return View(articleView(2,1));
+            //默认第一页
+            int p = 1;
+            if (page != null)
+            {
+                int isint;
+                if (!int.TryParse(page, out isint))
+                {
+                    return Content("查看内容不存在");
+                }
+                p = Convert.ToInt32(page) < 1 ? 1 : Convert.ToInt32(page);
+            }
+            return View(articleView(2,1,"/Home/Life"));
         }
         //学习
-        public ActionResult Learn()
+        public ActionResult Learn(string page)
         {
-            return View(articleView(3,1));
+            //默认第一页
+            int p = 1;
+            if (page != null)
+            {
+                int isint;
+                if (!int.TryParse(page, out isint))
+                {
+                    return Content("查看内容不存在");
+                }
+                p = Convert.ToInt32(page) < 1 ? 1 : Convert.ToInt32(page);
+            }
+            return View(articleView(3,1,"/Home/Learn"));
         }
         /// <summary>
         /// 文章列表，返回一个文章集合
@@ -63,7 +85,7 @@ namespace WXLWeb.Controllers
         /// <param name="type1">文章类别</param>
         /// <param name="pageNum">第几页</param>
         /// <returns></returns>
-        private ArticleView articleView(int type1,int pageNum)
+        private ArticleView articleView(int type1,int pageNum,string url)
         {
             ArticleView articleList = new ArticleView();
             List<Article> articles = new List<Article>();
@@ -82,7 +104,7 @@ namespace WXLWeb.Controllers
             SqlParameter[] param ={new SqlParameter("@LineNum",linNum),
                                      new SqlParameter("@pageNum",pageNum),
                                   new SqlParameter("@Type1",Type1)};
-            ViewBag.page =new MvcHtmlString(commHelper.page(pageNum, pageNumSum, "/Home/Skill", "id", 5));
+            ViewBag.page = new MvcHtmlString(commHelper.page(pageNum, pageNumSum,url, "page", 5));
             //文章列表
             using (SqlDataReader sdr = SQLHelper.ExecuteReader("Long_ArticleToPage", CommandType.StoredProcedure, param))
             {

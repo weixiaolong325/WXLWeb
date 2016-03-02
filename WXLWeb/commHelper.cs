@@ -65,8 +65,8 @@ namespace WXLWeb
                 }
 
             }
-
             sb.Append(string.Format(" <a href='{0}?{1}={2}'>下一页</a>", url, p, pageNum + 1 >=pageNumSum ? pageNumSum : pageNum+1));
+            sb.Append("</div>");
             return sb.ToString();
         }
     }

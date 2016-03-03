@@ -79,6 +79,11 @@ namespace WXLWeb.Controllers
             }
             return View(articleView(3,1,"/Home/Learn"));
         }
+        //查看文章
+        public ActionResult Article(string id)
+        {
+            return View();
+        }
         /// <summary>
         /// 文章列表，返回一个文章集合
         /// </summary>

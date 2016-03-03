@@ -257,3 +257,46 @@ margin-bottom:10px;
 color:#075DB3;
 }
     /*----------------------------技术分享------------------------*/
+    /*-----------------------------随笔分享样式-----------------*/
+.sb_Title {
+height:60px;
+text-align:center;
+line-height:60px;
+font-size:20px;
+}
+    .sb_Title a {
+    text-decoration:none;
+   font-weight:700;
+   color:#756F71;
+    }
+.sb_info {
+text-align:center;
+color:#999;
+border:1px dashed #9ad1fa;
+height:20px;
+line-height:20px;
+font-size:12px;
+}
+    .sb_info a {
+    text-decoration:none;
+    color:#63B120;
+    }
+.sb_tag {
+margin:10px 0;
+}
+.sb_tag_a {
+    text-decoration:none;
+    display:inline-block;
+    padding:4px 10px;
+    line-height:100%;
+    margin-right:10px;
+    border:1px solid #e4dddd;
+    color:#fff;
+    background-color:#808080;
+    border-radius:10px;
+}
+.sb_content {
+font-size:14px;
+line-height:28px;
+}
+/*-----------------------------随笔分享样式-----------------*/

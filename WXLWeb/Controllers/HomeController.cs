@@ -125,7 +125,6 @@ namespace WXLWeb.Controllers
                         article.CreateTime = Convert.ToDateTime(sdr["CreateTime"]).ToString("yyyy-MM-dd HH:mm:ss");
                         article.UserId = sdr["UserId"].ToString();
                         article.UserName = sdr["UserName"].ToString();
-                        article.Tag = sdr["Tag"].ToString();
                         article.LookNum = Convert.ToInt32(sdr["LookNum"]);
                         article.Abstract = sdr["Abstract"].ToString();
 

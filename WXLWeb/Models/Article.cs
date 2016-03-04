@@ -20,5 +20,6 @@ namespace WXLWeb.Models
         public string Tag { get; set; }
         public int LookNum { get; set; }
         public string Abstract { get; set; }
+        public string ArticleId2 { get; set; }
     }
 }

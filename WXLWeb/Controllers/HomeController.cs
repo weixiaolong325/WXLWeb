@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using WXLWeb.ViewModels;
 using Common;
+using System.Threading.Tasks;
 
 namespace WXLWeb.Controllers
 {
@@ -82,6 +83,46 @@ namespace WXLWeb.Controllers
         //查看文章
         public ActionResult Article(string id)
         {
+            ArticleRead articleRead = new ArticleRead();
+            Article article = new Article();
+            List<Tag> tags = new List<Tag>();
+            if (string.IsNullOrEmpty(id))
+            {
+                return Content("出错啦!这里没有内容哦~");
+            }
+            //1.把文章内容查出来
+            string sql = "select a.ArticleId,a.Title,a.ContentTxt,a.Type1,a.Type2,a.CreateTime,a.UserId,a.UserName,a.LookNum, a.ArticleId2,b.TagId,b.TagName from WXL_Article a left join WXL_Tag b on a.ArticleId2=b.ArticleId2 and b.IsDel=0 where ArticleId=@ArticleId and a.Isdel=0 ";
+            SqlParameter[] param = { new SqlParameter("@ArticleId", id) };
+            DataTable dt = SQLHelper.Dt(sql, CommandType.Text, param);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                //1.如果是第一行就读取文章内容和标签
+                if (i == 0)
+                {
+                    Tag tag = new Tag();
+                    article.ArticleId = Convert.ToInt32(dt.Rows[i]["ArticleId"]);
+                    article.Title = dt.Rows[i]["Title"].ToString();
+                    article.CreateTime = Convert.ToDateTime(dt.Rows[i]["CreateTime"]).ToString("yyyy-MM-dd HH:mm:ss");
+                    article.ContentTxt = dt.Rows[i]["ContentTxt"].ToString();
+                    article.UserId = dt.Rows[i]["UserId"].ToString();
+                    article.UserName = dt.Rows[i]["UserName"].ToString();
+                    article.LookNum = Convert.ToInt64(dt.Rows[i]["LookNum"]);
+                    article.Type2 = dt.Rows[i]["Type2"].ToString();
+                    if (dt.Rows[i]["TagId"] != DBNull.Value)
+                        tag.TagId = Convert.ToInt32(dt.Rows[i]["TagId"]);
+                    if (dt.Rows[i]["TagName"] != DBNull.Value)
+                        tag.TagName = dt.Rows[i]["TagName"].ToString();
+                    tags.Add(tag);
+                    //开一个线程执行文章阅读数+1
+                    var task = Task.Run(() => { ArticleRaddNumAdd(articleRead.article.ArticleId); });
+                }
+                   //第二行起只读取标签
+                else
+                { 
+                }
+ 
+            }
+
             return View();
         }
         /// <summary>
@@ -134,6 +175,14 @@ namespace WXLWeb.Controllers
                 }
             }
             return articleList;
+        }
+
+        //文章阅读数+1
+        private static void ArticleRaddNumAdd(int id)
+        {
+            string sql = "update WXL_Article set LookNum=LookNum+1 where ArticleId=@ArticleId";
+            SqlParameter[] param = { new SqlParameter("@ArticleId", id) };
+            SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param);
         }
     }
 }

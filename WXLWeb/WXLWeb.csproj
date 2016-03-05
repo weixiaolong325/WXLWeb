@@ -780,6 +780,7 @@
     <Content Include="Views\Home\Learn.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\WebManagement\Index.cshtml" />
+    <Content Include="Views\Home\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

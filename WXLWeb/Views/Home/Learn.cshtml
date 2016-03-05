@@ -18,7 +18,7 @@
    <div id="l_top">
     
     </div>
-    <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">生活记录</span>
+    <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">学习记录</span>
        </div><div id="nav_txt_right">学习是人与人的区别~</div><div class="clear"></div>
     </div>
      <div id="s_body">
@@ -33,7 +33,7 @@
                     作者: <a class="s_authname" href="javascript:void()">@article.UserName</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">@article.Type2</a>]</div>
                 <div class="article_list_content">
               摘要: @article.Abstract...
-                    <a class="article_readmore" href="javascript:void()">阅读全文</a>
+                    <a class="article_readmore" href="@Url.Action("Article", "Home", new { id = "123.html"})">阅读全文</a>
                 </div>
             </div> 
             }

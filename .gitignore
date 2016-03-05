@@ -3,6 +3,8 @@ Thumbs.db
 ehthumbs.db
 obj
 bin
+*.suo
+*.sln
 # Folder config file
 Desktop.ini
 

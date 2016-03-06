@@ -247,6 +247,15 @@ color:#075DB3;
 }
     /*----------------------------技术分享------------------------*/
     /*-----------------------------随笔分享样式-----------------*/
+.sb_goback {
+    height:60px;
+    float:left;
+    line-height:60px;
+font-size:20px;
+}
+    .sb_goback a {
+    color:#0094ff;
+    }
 .sb_Title {
 height:60px;
 text-align:center;
@@ -287,5 +296,10 @@ margin:10px 0;
 .sb_content {
 font-size:14px;
 line-height:28px;
+word-wrap:break-word;
+word-break:break-all;
+display:block;
+width:100%;
+margin-bottom:50px;
 }
 /*-----------------------------随笔分享样式-----------------*/

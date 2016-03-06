@@ -1,17 +1,19 @@
 ﻿@{
     Layout = null;
 }
-
+@model WXLWeb.ViewModels.ArticleRead
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="Shortcut Icon" href="/Images/title.ico" />
-    <title>随笔分享</title>
+    <title>@Model.article.Title</title>
     <link href="~/Content/Base.css" rel="stylesheet" />
+     <script src=" http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
+    <script src="~/Scripts/MyJs.js"></script>
 </head>
-<body>
+<body onload="duoshuoMessageBoard()">
     @{Html.RenderPartial("Head");}
      <div id="l_top">
     
@@ -21,19 +23,37 @@
     </div>
     <div id="s_body">
         <div id="s_body_left">
-            <div class="sb_Title"><a href="javascript:void(0);">Linq百科</a></div>
+          <div class="sb_goback"><a href="javascript:window.history.go(-1);">返回</a></div>
+              <div class="sb_Title"><a href="javascript:void(0);">@Model.article.Title</a></div>
             <div class="sb_info">
-                发布时间:<span class="sp_blank"></span>2016-03-03&nbsp;编辑:<a href="javascript:void(0);">韦小龙</a>&nbsp;
-                阅读(1232)
+                发布时间:<span class="sp_blank"></span>@Model.article.CreateTime&nbsp;编辑:<a href="javascript:void(0);">@Model.article.UserName</a>&nbsp;
+                阅读(@Model.article.LookNum)
             </div>
             <div class="sb_tag">
-                <a class="sb_tag_a" href="javascript:void(0);">linq</a><a class="sb_tag_a" href="javascript:void(0);">.net</a>
-            </div>
+                @if(Model.tags.Count>0)
+                {
+                    foreach (var ts in Model.tags)
+                    {
+                <a class="sb_tag_a" href="javascript:void(0);">@ts.TagName</a>
+                }
+                } </div>
              <div class="sb_content">
-              《假如生活欺骗了你》选自《普希金诗集》，这是一首哲理抒情诗，诗人以普普通通的句子，通过自己真真切切的生活感受，向女友提出慰藉。这首诗以劝告的口吻和平等的娓娓的语气写来，语调亲密和婉，热诚坦率；诗句清新流畅，热烈深沉，有丰富的人情味和哲理意味，表达了诗人真诚博大的情怀和坚强乐观的思想情怀 开头是一个假设，“假如生活欺骗了你”，这假设会深深伤害人们，足以使脆弱的人们丧失生活的信心，足
-《假如生活欺骗了你》选自《普希金诗集》，这是一首哲理抒情诗，诗人以普普通通的句子，通过自己真真切切的生活感受，向女友提出慰藉。这首诗以劝告的口吻和平等的娓娓的语气写来，语调亲密和婉，热诚坦率；诗句清新流畅，热烈深沉，有丰富的人情味和哲理意味，表达了诗人真诚博大的情怀和坚强乐观的思想情怀 开头是一个假设，“假如生活欺骗了你”，这假设会深深伤害人们，足以使脆弱的人们丧失生活的信心，足
-                 《假如生活欺骗了你》选自《普希金诗集》，这是一首哲理抒情诗，诗人以普普通通的句子，通过自己真真切切的生活感受，向女友提出慰藉。这首诗以劝告的口吻和平等的娓娓的语气写来，语调亲密和婉，热诚坦率；诗句清新流畅，热烈深沉，有丰富的人情味和哲理意味，表达了诗人真诚博大的情怀和坚强乐观的思想情怀 开头是一个假设，“假如生活欺骗了你”，这假设会深深伤害人们，足以使脆弱的人们丧失生活的信心，足
+                @ViewBag.ContentTxt
              </div>
+            <!-- JiaThis Button BEGIN -->
+    <div class="jiathis_style" style="margin-top:10px">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_tools_1"></a>
+	<a class="jiathis_button_tools_2"></a>
+	<a class="jiathis_button_tools_3"></a>
+	<a class="jiathis_button_tools_4"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+</div>
+            <div class="clear"></div>
+            <div class="ds-thread" data-thread-key="@Model.article.ArticleId" data-title="文章评论" data-url="www.wxiaolong.com"></div>
             </div>
      <div id="s_body_right">
 

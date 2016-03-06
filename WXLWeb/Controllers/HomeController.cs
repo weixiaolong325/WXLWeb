@@ -90,10 +90,23 @@ namespace WXLWeb.Controllers
             {
                 return Content("出错啦!这里没有内容哦~");
             }
+            string strId = id.ToLower().Replace(".html", "");
+            int isint = 0;
+            if (!int.TryParse(strId, out isint))
+            {
+                return Content("出错啦!这里没有内容哦~");
+            }
+            int articleId = Convert.ToInt32(strId);
+
             //1.把文章内容查出来
             string sql = "select a.ArticleId,a.Title,a.ContentTxt,a.Type1,a.Type2,a.CreateTime,a.UserId,a.UserName,a.LookNum, a.ArticleId2,b.TagId,b.TagName from WXL_Article a left join WXL_Tag b on a.ArticleId2=b.ArticleId2 and b.IsDel=0 where ArticleId=@ArticleId and a.Isdel=0 ";
-            SqlParameter[] param = { new SqlParameter("@ArticleId", id) };
+            SqlParameter[] param = { new SqlParameter("@ArticleId", articleId) };
             DataTable dt = SQLHelper.Dt(sql, CommandType.Text, param);
+            //判断文章是否存在
+            if (dt.Rows.Count <= 0)
+            {
+                return Content("出错啦!这里没有内容哦~");
+            }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 //1.如果是第一行就读取文章内容和标签
@@ -103,7 +116,7 @@ namespace WXLWeb.Controllers
                     article.ArticleId = Convert.ToInt32(dt.Rows[i]["ArticleId"]);
                     article.Title = dt.Rows[i]["Title"].ToString();
                     article.CreateTime = Convert.ToDateTime(dt.Rows[i]["CreateTime"]).ToString("yyyy-MM-dd HH:mm:ss");
-                    article.ContentTxt = dt.Rows[i]["ContentTxt"].ToString();
+                    ViewBag.ContentTxt =new MvcHtmlString(dt.Rows[i]["ContentTxt"].ToString());
                     article.UserId = dt.Rows[i]["UserId"].ToString();
                     article.UserName = dt.Rows[i]["UserName"].ToString();
                     article.LookNum = Convert.ToInt64(dt.Rows[i]["LookNum"]);
@@ -112,18 +125,26 @@ namespace WXLWeb.Controllers
                         tag.TagId = Convert.ToInt32(dt.Rows[i]["TagId"]);
                     if (dt.Rows[i]["TagName"] != DBNull.Value)
                         tag.TagName = dt.Rows[i]["TagName"].ToString();
+                    if(tag.TagName!=null)
                     tags.Add(tag);
                     //开一个线程执行文章阅读数+1
-                    var task = Task.Run(() => { ArticleRaddNumAdd(articleRead.article.ArticleId); });
+                    var task = Task.Run(() => { ArticleRaddNumAdd(article.ArticleId); });
                 }
-                   //第二行起只读取标签
+                //第二行起只读取标签
                 else
-                { 
+                {
+                    Tag tag = new Tag();
+                    if (dt.Rows[i]["TagId"] != DBNull.Value)
+                        tag.TagId = Convert.ToInt32(dt.Rows[i]["TagId"]);
+                    if (dt.Rows[i]["TagName"] != DBNull.Value)
+                        tag.TagName = dt.Rows[i]["TagName"].ToString();
+                    if (tag.TagName != null)
+                    tags.Add(tag);
                 }
- 
             }
-
-            return View();
+            articleRead.article = article;
+            articleRead.tags = tags;
+            return View(articleRead);
         }
         /// <summary>
         /// 文章列表，返回一个文章集合

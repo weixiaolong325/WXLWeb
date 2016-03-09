@@ -19,6 +19,7 @@ namespace WXLWeb.Controllers
 
         public ActionResult Index()
         {
+
             return View();
         }
 

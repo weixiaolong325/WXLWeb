@@ -130,7 +130,6 @@ C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\WXLWeb.pdb
 C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\Antlr3.Runtime.dll
 C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\Common.dll
 C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\EntityFramework.dll
-C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\LitJSON.dll
 C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\Newtonsoft.Json.dll
 C:\Users\xiaolong.wei\WXLWeb\WXLWeb\bin\System.Net.Http.Formatting.dll

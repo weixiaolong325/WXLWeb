@@ -31,19 +31,22 @@
 					</ul>
 				</div>
 				<div title="文章管理"  style="padding:10px;">
-					<ul class="ul_article"><li><a href="@Url.Action("AddArticle","WebManagement")" target="MainFrame">写文章</a></li>
-                        <li><a href="javascript:void(0);" target="MainFrame">文章列表</a></li>
+					<ul class="ul_article">
+                        <li><a href="@Url.Action("AddArticle","WebManagement")" target="MainFrame">写文章</a></li>
+                        <li><a href="@Url.Action("ArticleList","WebManagement")" target="MainFrame">文章列表</a></li>
 					</ul>
 				</div>
 				<div title="帮助" data-options="selected:true,plain:true,iconCls:'icon-help'" style="padding:10px">
 					<a href="javascript:void(0);">关于系统</a>
 				</div>
-			</div>
+			</div>
+
 	</div>
 	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;text-align:center;">
         CopyingRight @Html.Raw("@")2016&nbsp;|&nbsp;wxiaolong.com</div>
 	<div data-options="region:'center',title:'内容'">
        <iframe class="MainFrame" name="MainFrame" src="https://baidu.com" > </iframe> 
 	</div>
-</body>
+</body>
+
 </html>

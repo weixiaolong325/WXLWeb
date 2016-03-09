@@ -302,4 +302,8 @@ display:block;
 width:100%;
 margin-bottom:50px;
 }
+.article_list_title:hover {
+text-decoration:underline;
+color:#0094ff;
+}
 /*-----------------------------随笔分享样式-----------------*/

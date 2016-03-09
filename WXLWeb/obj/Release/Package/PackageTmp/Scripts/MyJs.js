@@ -10,32 +10,32 @@
     };
 //多说公共JS代码 end 
 
-function active_li6() {
-    var a = $("#nav_ul a");
-    a[5].setAttribute("class", "active_li");
+function active_li_messageboard() {
+    var a = $("#nav_ul_messageboard");
+    a[0].setAttribute("class", "active_li");
 }
 //主页
-function active_li1() {
-    var a = $("#nav_ul a");
+function active_li_index() {
+    var a = $("#nav_ul_index");
     a[0].setAttribute("class", "active_li");
 }
 //关于我
-function active_li2() {
-    var a = $("#nav_ul a");
-    a[1].setAttribute("class", "active_li");
+function active_li_aboutme() {
+    var a = $("#nav_ul_aboutme");
+    a[0].setAttribute("class", "active_li");
 }
 //生活记录
-function active_li3() {
-    var a = $("#nav_ul a");
-    a[2].setAttribute("class", "active_li");
+function active_li_life() {
+    var a = $("#nav_ul_life");
+    a[0].setAttribute("class", "active_li");
 }
 //技术分享
-function active_li4() {
-    var a = $("#nav_ul a");
-    a[3].setAttribute("class", "active_li");
+function active_li_skill() {
+    var a = $("#nav_ul_skill");
+    a[0].setAttribute("class", "active_li");
 }
 //学海无涯
-function active_li5() {
-    var a = $("#nav_ul a");
-    a[4].setAttribute("class", "active_li");
+function active_li_learn() {
+    var a = $("#nav_ul_learn");
+    a[0].setAttribute("class", "active_li");
 }

@@ -42,3 +42,24 @@ color:#0094ff;
      color:#ff6a00;
     }
 /*-------------------后台管理主页样式-------------------*/
+/*------------------------------文章列表样式-----------------*/
+#al_tb {
+border-collapse:collapse;
+width:700px;
+}
+#al_tb td {
+border:1px solid #808080;
+text-align:center;
+vertical-align:middle;
+}
+    #al_tb tr {
+    height:25px;
+    }
+.al_tb_th {
+background-color:#f2eeee;
+font-weight:700;
+}
+.al_tb_tr2 {
+    background-color:#e7f8dc;
+}
+/*------------------------------文章列表样式-----------------*/

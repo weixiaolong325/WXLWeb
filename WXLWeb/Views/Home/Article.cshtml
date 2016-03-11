@@ -55,7 +55,7 @@
 <!-- JiaThis Button END -->
 </div>
             <div class="clear"></div>
-            <div class="ds-thread" data-thread-key="@Model.article.ArticleId" data-title="文章评论" data-url="www.wxiaolong.com"></div>
+            <div class="ds-thread" data-thread-key="@Model.article.ArticleId" data-title="@Model.article.Title" data-url="@Url.Action("Article", "Home", new { id = Model.article.ArticleId + ".html" })"></div>
             </div>
      <div id="s_body_right">
 

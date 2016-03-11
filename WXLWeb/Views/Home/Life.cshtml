@@ -30,7 +30,7 @@
             foreach(var article in Model.Articles)
             {
             <div class="article_list">
-                 <div class="article_list_title"><a class="article_list_title" href="@Url.Action("Article", "Home", new { id =article.ArticleId+".html"})">@article.Title</a></div>
+                 <div class="article_list_title"><a href="@Url.Action("Article", "Home", new { id =article.ArticleId+".html"})">@article.Title</a></div>
                 <div class="article_list_info">发布时间:@article.CreateTime<span class="sp_blank"></span> 
                     作者: <a class="s_authname" href="javascript:void()">@article.UserName</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">@article.Type2</a>]</div>
                 <div class="article_list_content">

@@ -216,7 +216,7 @@ font-size:32px;
         color:#808080;
         }
     /*屏幕宽度小于500px时，文章列表占全部宽度*/
-@media screen and (max-width:600px) {
+@media screen and (max-width:620px) {
     #s_body_left {
     width:100%;
     }
@@ -327,7 +327,7 @@ display:block;
 width:100%;
 margin-bottom:50px;
 }
-.article_list_title:hover {
+.article_list_title a:hover {
 text-decoration:underline;
 color:#0094ff;
 }

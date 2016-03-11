@@ -4,6 +4,7 @@
         padding:0px;
         font-size:14px;
         font-family:"宋体",Arial;
+      background:#fefdf3;
         }
  /*清除float*/
  .clear {
@@ -26,9 +27,19 @@ color:#ff6a00 !important;
 }
   #head {
         /*border:1px solid #0094ff;*/
-        margin-top:20px;
+        margin-top:0px;
         margin-left:20px;
         }
+#top {
+         background-image:url(../Images/top.jpg);
+         background-repeat:no-repeat;
+         -moz-background-size:100% 100%;  
+    background-size:100% 100%;
+         margin:0;
+         position:relative;
+         padding-top:20px;
+         padding-bottom:20px;
+}
 #nav_div {
 text-align:right;
 padding-right:20px;
@@ -86,6 +97,7 @@ color:#808080;
 position:absolute;
 right:20px;
 top:0px;
+width:290px;
 }
 .z_me_img {
     width:194px;
@@ -189,7 +201,6 @@ font-size:32px;
      #s_body_left {
         float:left;
         width:70%;
-        min-width:350px;
         margin-top:10px;
         margin-right:10px;
         border-right:3px dotted #808080;
@@ -200,11 +211,25 @@ font-size:32px;
         padding-left:10px;
         float:left;
         width:20%;
-        min-width:150px;
         font-size:14px;
         font-family:"微软雅黑";
         color:#808080;
         }
+    /*屏幕宽度小于500px时，文章列表占全部宽度*/
+@media screen and (max-width:600px) {
+    #s_body_left {
+    width:100%;
+    }
+    #s_body_right {
+    width:100%;
+    }
+     #body_left {
+    width:100%;
+           }
+            #body_right {
+                width: 100%;
+            }
+}
 .article_list {
 border-bottom:1px dashed #9ad1fa;
 box-sizing:border-box;

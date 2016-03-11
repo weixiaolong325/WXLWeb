@@ -82,10 +82,9 @@ namespace WXLWeb.Controllers
                     List<string> str = article.Tag.Split(",，".ToCharArray()).ToList<string>();
                     foreach (var tag in str)
                     {
-                        string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName,ArticleType1) values(@ArticleId2,@TagName,@ArticleType1)";
+                        string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
                         SqlParameter[] paramTag ={new SqlParameter("@ArticleId2",article.ArticleId2),
-                                                new SqlParameter("@TagName",tag),
-                                                new SqlParameter("@ArticleType1",article.Type1)};
+                                                new SqlParameter("@TagName",tag)};
                         //插入标签
                         SQLHelper.ExecuteNonQuery(sqlAddTag, CommandType.Text, paramTag);
                     }
@@ -178,7 +177,7 @@ namespace WXLWeb.Controllers
             {
                 return Redirect("/ReWrite/Error.html");
             }
-            string sql = "select ArticleId,Title,ContentTxt,Type1,Type2,Abstract,b.TagId,b.TagName from WXL_Article  a left join WXL_Tag b on a.ArticleId2=b.ArticleId2 and a.Isdel=0 and b.IsDel=0 where ArticleId=@ArticleId ";
+            string sql = "select ArticleId,Title,ContentTxt,Type1,Type2,Abstract,b.TagId,b.TagName,a.ArticleId2 from WXL_Article  a left join WXL_Tag b on a.ArticleId2=b.ArticleId2 and a.Isdel=0 and b.IsDel=0 where ArticleId=@ArticleId ";
             SqlParameter []param={new SqlParameter("@ArticleId",id)};
             using (SqlDataReader sdr = SQLHelper.ExecuteReader(sql, CommandType.Text, param))
             {
@@ -201,6 +200,7 @@ namespace WXLWeb.Controllers
                            ViewBag.content= new  MvcHtmlString(sdr["ContentTxt"].ToString());
                             article.Type1 = Convert.ToInt32(sdr["Type1"]);
                             article.Type2 = sdr["Type2"].ToString();
+                            article.ArticleId2 = sdr["ArticleId2"].ToString();
                             //标签
                             if (sdr["TagName"] != null)
                             {
@@ -223,11 +223,96 @@ namespace WXLWeb.Controllers
 
             return View(alterArticleView);
         }
-
+         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult AlterArticle(FormCollection fc)
+        public ActionResult AlterArticle(FormCollection fc,AlterArticleView av )
         {
-            return Content("暂没有修改功能");
+            try
+            {
+                //1.获取文章内容
+                string content = fc["content"];
+                //文章摘要
+                string Abstract = Commonfun.ReplaceHtmlTag(content, 150);
+                //修改时间
+                DateTime alterTime = DateTime.Now;
+                //2.更新文章
+                string sql = "update WXL_Article set Title=@Title,ContentTxt=@ContentTxt,Type1=@Type1,Type2=@Type2,AlterTime=@AlterTime,Abstract=@Abstract where ArticleId=@ArticleId";
+                SqlParameter[] param ={new SqlParameter("@Title",av.article.Title),
+                                       new SqlParameter("@ContentTxt",content),
+                                       new SqlParameter ("@Type1",av.article.Type1),
+                                       new SqlParameter("@Type2",av.article.Type2),
+                                       new SqlParameter("@AlterTime",alterTime),
+                                       new SqlParameter("@Abstract",Abstract),
+                                       new SqlParameter("@ArticleId",av.article.ArticleId)};
+                SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param);
+                //获取标签Tag
+                List<string> strTag = av.tags.Split(",，".ToCharArray(),StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+                if (strTag.Count > 0)
+                {
+                    string sqlTag = "select TagId,ArticleId2,TagName from WXL_Tag where ArticleId2=@ArticleId2";
+                    SqlParameter[] paramTag = { new SqlParameter("@ArticleId2", av.article.ArticleId2) };
+                    using (SqlDataReader sdr = SQLHelper.ExecuteReader(sqlTag, CommandType.Text, paramTag))
+                    {
+                        if (sdr.HasRows)
+                        {
+                            while (sdr.Read())
+                            {
+                                string TagNow = string.Empty;
+                                bool isHave = false;
+                                string tagName = sdr["TagName"].ToString();
+                                //循环看是否能匹配到,匹配不到则删除
+                                foreach (var str in strTag)
+                                {
+                                    //能匹配到
+                                    if (tagName == str)
+                                    {
+                                        TagNow = str;
+                                        isHave = true;
+                                        break;
+                                    }
+                                }
+                                //匹配到,则前端传进来的标签移除一个
+                                if (isHave == true)
+                                {
+                                    strTag.Remove(TagNow);
+                                }
+                                else
+                                {
+                                    //匹配不到，则数据库里删除这个标签
+                                    string sql_TagDel = "delete WXL_Tag where ArticleId2=@ArticleId2 and TagName=@TagName";
+                                    SqlParameter[] param_TagDel ={
+                                                   new SqlParameter("@ArticleId2",av.article.ArticleId2),
+                                                   new SqlParameter("@TagName",TagNow)};
+                                    SQLHelper.ExecuteNonQuery(sql_TagDel,CommandType.Text,param_TagDel);
+                                }
+                            }
+                            //剩下的标签都是新增加的
+                            if (strTag.Count > 0)
+                            {
+                                foreach (var str in strTag)
+                                {
+                                    string sql_tagAdd = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
+                                    SqlParameter[] param_tagAdd ={
+                                          new SqlParameter("@ArticleId2",av.article.ArticleId2),
+                                          new SqlParameter("@TagName",str)};
+                                    SQLHelper.ExecuteNonQuery(sql_tagAdd, CommandType.Text, param);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    string sqlTag = "delete WXL_Tag where ArticleId2=@ArticleId2";
+                    SqlParameter[] paramTag = { new SqlParameter("@ArticleId2", av.article.ArticleId2) };
+                    SQLHelper.ExecuteNonQuery(sqlTag,CommandType.Text,paramTag);
+                }
+                return Content("修改成功");
+            }
+            catch 
+            {
+                return Redirect("/ReWrite/Error.html");
+            }
         }
     }
 }

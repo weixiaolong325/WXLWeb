@@ -25,6 +25,7 @@
     @using (Html.BeginForm("AlterArticle", "WebManagement", FormMethod.Post))
     { 
         @Html.HiddenFor(a=>a.article.ArticleId)
+        @Html.HiddenFor(a=>a.article.ArticleId2)
        <p >标题:@Html.TextBoxFor(a=>a.article.Title)</p>
     <p>正文:</p>
     <div>

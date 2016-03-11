@@ -14,11 +14,12 @@
     <script src="~/Scripts/MyJs.js"></script>
 </head>
 <body onload="duoshuoMessageBoard();active_li_messageboard();">
-    
+     <div id="top">
     @{Html.RenderPartial("Head");}
     <div id="l_top">
     
     </div>
+         </div> 
     <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">留言板</span>
        </div><div id="nav_txt_right">你是我生命中重要的过客,留下点什么吧~</div><div class="clear"></div>
     </div>

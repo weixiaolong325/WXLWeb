@@ -211,11 +211,14 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\head.jpg" />
     <Content Include="Images\Login\HeadBack.jpg" />
     <Content Include="Images\Login\login-btn.gif" />
     <Content Include="Images\Login\panel-c.gif" />
     <Content Include="Images\Login\panel-f.gif" />
     <Content Include="Images\Login\panel-h.gif" />
+    <Content Include="Images\mylogo.gif" />
+    <Content Include="Images\top.jpg" />
     <Content Include="Plug\EasyUi\demo.css" />
     <Content Include="Plug\EasyUi\easyloader.js" />
     <Content Include="Plug\EasyUi\jquery-1.8.0.min.js" />
@@ -553,7 +556,6 @@
     <None Include="Properties\PublishProfiles\wxlWeb.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\%28zhaoxi.net%29.gif" />
-    <Content Include="Images\mylogo.png" />
     <Content Include="Images\title.ico" />
     <Content Include="Images\weixiaolong.jpg" />
     <Content Include="Plug\Ueditor\dialogs\anchor\anchor.html" />

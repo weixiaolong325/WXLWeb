@@ -14,10 +14,12 @@
     <script src="~/Scripts/MyJs.js"></script>
 </head>
 <body onload="active_li_aboutme()">
+    <div id="top">
     @{Html.RenderPartial("Head");}
      <div id="l_top">
     
     </div>
+        </div>
     <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">关于我</span>
        </div><div id="nav_txt_right">后面是悬崖,行的再慢也是前进,我要在这条路上走的更远~</div><div class="clear"></div>
     </div>

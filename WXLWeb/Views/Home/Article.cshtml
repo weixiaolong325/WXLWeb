@@ -14,10 +14,12 @@
     <script src="~/Scripts/MyJs.js"></script>
 </head>
 <body onload="duoshuoMessageBoard()">
+     <div id="top">
     @{Html.RenderPartial("Head");}
      <div id="l_top">
     
     </div>
+        </div> 
     <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">随笔分享</span>
        </div><div id="nav_txt_right">分享使人快乐~</div><div class="clear"></div>
     </div>
@@ -57,16 +59,17 @@
             </div>
      <div id="s_body_right">
 
-         <h2 style="text-align:center">分类</h2>
+         <h2 style="text-align:center">我的标签</h2>
          <p style="margin-left:10px;"><a href="javascript:void()">1.ASP.NET</a></p>
-           <p style="margin-left:10px;"><a href="javascript:void()"2.>ASP.NET MVC</a></p>
-          <p style="margin-left:10px;"><a href="javascript:void()">3.EF</a></p>
-         <p style="margin-left:10px;"><a href="javascript:void()">4.HTML5</a></p>
-         <p style="margin-left:10px;"><a href="javascript:void()">5.CSS3</a></p>
-           <p style="margin-left:10px;"><a href="javascript:void()">6.Bootstrap</a></p>
-         <p style="margin-left:10px;"><a href="javascript:void()">7.Jquery</a></p>
-          <p style="margin-left:10px;"><a href="javascript:void()">8.Linq之路</a></p>
-          <p style="margin-left:10px;"><a href="javascript:void()">9.EasyUI</a></p>
+          <p style="margin-left:10px;"><a href="javascript:void()">2.SQL</a></p>
+           <p style="margin-left:10px;"><a href="javascript:void()">3.ASP.NET MVC</a></p>
+          <p style="margin-left:10px;"><a href="javascript:void()">4.EF</a></p>
+         <p style="margin-left:10px;"><a href="javascript:void()">5.HTML5</a></p>
+         <p style="margin-left:10px;"><a href="javascript:void()">6.CSS3</a></p>
+           <p style="margin-left:10px;"><a href="javascript:void()">7.Bootstrap</a></p>
+         <p style="margin-left:10px;"><a href="javascript:void()">8.Jquery/JS</a></p>
+          <p style="margin-left:10px;"><a href="javascript:void()">9.Linq之路</a></p>
+          <p style="margin-left:10px;"><a href="javascript:void()">10.EasyUI</a></p>
      </div>
      <div class="clear"></div>
      </div> 

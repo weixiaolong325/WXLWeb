@@ -2,3 +2,12 @@ F:\C#\PRO\WXLWeb_v2\Common\bin\Debug\Common.dll
 F:\C#\PRO\WXLWeb_v2\Common\bin\Debug\Common.pdb
 F:\C#\PRO\WXLWeb_v2\Common\obj\Debug\Common.dll
 F:\C#\PRO\WXLWeb_v2\Common\obj\Debug\Common.pdb
+C:\Users\admin\WXLWeb\Common\bin\Debug\Common.dll
+C:\Users\admin\WXLWeb\Common\bin\Debug\Common.pdb
+C:\Users\admin\WXLWeb\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\admin\WXLWeb\Common\obj\Debug\Common.dll
+C:\Users\admin\WXLWeb\Common\obj\Debug\Common.pdb
+C:\Users\xiaolong.wei\WXLWeb\Common\bin\Debug\Common.dll
+C:\Users\xiaolong.wei\WXLWeb\Common\bin\Debug\Common.pdb
+C:\Users\xiaolong.wei\WXLWeb\Common\obj\Debug\Common.dll
+C:\Users\xiaolong.wei\WXLWeb\Common\obj\Debug\Common.pdb

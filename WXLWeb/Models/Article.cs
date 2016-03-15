@@ -18,7 +18,8 @@ namespace WXLWeb.Models
         public string UserId { get; set; }
         public string UserName { get; set; }
         public string Tag { get; set; }
-        public int LookNum { get; set; }
+        public long LookNum { get; set; }
         public string Abstract { get; set; }
+        public string ArticleId2 { get; set; }
     }
 }

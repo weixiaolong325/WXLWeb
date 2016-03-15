@@ -9,28 +9,30 @@
     <meta name="viewport" content="width=device-width" />
      <link rel="Shortcut Icon" href="/Images/title.ico" />
     <title>新增随笔</title>
-    <script src="~/Plug/Kindeditor/kindeditor-min.js"></script>
-    <script src="~/Plug/Kindeditor/lang/zh_CN.js"></script>
-  <script >
-      KindEditor.ready(function (K) {
-          K.create('#editor_id', {
-              cssPath: '../Plug/Kindeditor/plugins/code/prettify.css',//样式
-              uploadJson: '../Plug/Kindeditor/asp.net/upload_json.ashx',//图片上传
-              fileManagerJson: '../Plug/Kindeditor/asp.net/file_manager_json.ashx',//图片管理
-              allowFileManager: true  //允许使用文件管理
-          });
-      });
+  <!-- 配置文件 -->
+   <script src="~/Plug/Ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script src="~/Plug/Ueditor/ueditor.all.min.js"></script>
+   <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        window.onload = function () {
+            //initialFrameWidth这个参数是宽跟当前窗口自动改变大小
+            var ue = UE.getEditor('container', { initialFrameWidth: null });
+
+        }
     </script>
 </head>
 <body>
+    <div style="margin-bottom:20px;color:#808080; font-size:12px;">当前位置:<span class="sp_blank txtDefault">文章管理</span><span class="sp_blank"> > </span> <span class="sp_blank txtDefault">写文章</span></div>
+    <div style="padding-left:50px; margin-bottom:40px;"><span style="font-size:12px;color:#808080;">欢迎用户:</span><span style="color:#0094ff">@Model.UserName</span></div>
    @using(Html.BeginForm("AddArticle","WebManagement",FormMethod.Post)){ 
        <p >标题:@Html.TextBoxFor(a=>a.Title)</p>
     <p>正文:</p>
     <div>
-        @Html.TextAreaFor(a=>a.ContentTxt,new {id="editor_id",name="content",style="width:700px;height:300px;"})
-       @* <textarea id="editor_id" name="content" style="width:700px;height:300px;">*@
-           
-@*</textarea>*@
+       <!-- 加载编辑器的容器 -->
+    <script id="container" name="content" style="max-width:800px; type="text/plain">
+
+    </script>
     </div>
        <p>类别:@Html.RadioButtonFor(a => a.Type1, 1, new { @checked = "true" })技术篇
            @Html.RadioButtonFor(a => a.Type1, 2)生活篇

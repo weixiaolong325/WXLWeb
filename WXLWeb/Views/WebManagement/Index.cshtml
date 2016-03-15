@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+         <link rel="Shortcut Icon" href="/Images/title.ico" />
+    <title>后台管理系统</title>
+    <link href="~/Plug/EasyUi/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Plug/EasyUi/themes/icon.css" rel="stylesheet" />
+    <link href="~/Content/Post.css" rel="stylesheet" />
+    <script src="~/Plug/EasyUi/jquery-1.8.0.min.js"></script>
+    <script src="~/Plug/EasyUi/jquery.easyui.min.js"></script>
+
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">
+        <div class="z_title">韦小龙个人网站后台管理系统</div>
+        <div class="z_username"><span style="color:#808080">当前用户:</span><span style="color:#cc0505">韦小龙</span>
+          &nbsp;&nbsp;<a class="z_logout" href="@Url.Action("Logout","User")">退出登录</a>
+        </div>
+	</div>
+	<div data-options="region:'west',split:true,title:'导航'" style="width:150px;padding:10px;">
+        <div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="用户管理" style="padding:10px;">
+					<ul class="ul_article"><li>用户信息</li>
+                        <li>权限管理</li>
+					</ul>
+				</div>
+				<div title="文章管理"  style="padding:10px;">
+					<ul class="ul_article">
+                        <li><a href="@Url.Action("AddArticle","WebManagement")" target="MainFrame">写文章</a></li>
+                        <li><a href="@Url.Action("ArticleList","WebManagement")" target="MainFrame">文章列表</a></li>
+					</ul>
+				</div>
+				<div title="帮助" data-options="selected:true,plain:true,iconCls:'icon-help'" style="padding:10px">
+					<a href="javascript:void(0);">关于系统</a>
+				</div>
+			</div>
+
+	</div>
+	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;text-align:center;">
+        CopyingRight @Html.Raw("@")2016&nbsp;|&nbsp;wxiaolong.com</div>
+	<div data-options="region:'center',title:'内容'">
+       <iframe class="MainFrame" name="MainFrame" src="https://baidu.com" > </iframe> 
+	</div>
+</body>
+
+</html>

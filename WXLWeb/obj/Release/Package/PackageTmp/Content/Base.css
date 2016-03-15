@@ -4,6 +4,7 @@
         padding:0px;
         font-size:14px;
         font-family:"宋体",Arial;
+      background:#fefdf3;
         }
  /*清除float*/
  .clear {
@@ -14,14 +15,31 @@ clear:both;
     display: inline-block;
     width: 10px;
 }
+ /*错误消息*/
+ .lbl_must {
+    color:#f00;
+    font-size:12px;
+    font-family: verdana,sans-serif;
+   
+}
  .active_li {
 color:#ff6a00 !important;
 }
   #head {
         /*border:1px solid #0094ff;*/
-        margin-top:20px;
+        margin-top:0px;
         margin-left:20px;
         }
+#top {
+         background-image:url(../Images/top.jpg);
+         background-repeat:no-repeat;
+         -moz-background-size:100% 100%;  
+    background-size:100% 100%;
+         margin:0;
+         position:relative;
+         padding-top:20px;
+         padding-bottom:20px;
+}
 #nav_div {
 text-align:right;
 padding-right:20px;
@@ -61,6 +79,7 @@ margin:5px 0 0 10px;
    width:166px;
    height:46px;
     }
+
  /*------------------------------共用样式-----------------------*/
 
  /*------------------------------主页样式-----------------------*/
@@ -78,6 +97,7 @@ color:#808080;
 position:absolute;
 right:20px;
 top:0px;
+width:290px;
 }
 .z_me_img {
     width:194px;
@@ -181,7 +201,7 @@ font-size:32px;
      #s_body_left {
         float:left;
         width:70%;
-        min-width:350px;
+        margin-top:10px;
         margin-right:10px;
         border-right:3px dotted #808080;
         padding-right:10px;
@@ -191,11 +211,25 @@ font-size:32px;
         padding-left:10px;
         float:left;
         width:20%;
-        min-width:150px;
         font-size:14px;
         font-family:"微软雅黑";
         color:#808080;
         }
+    /*屏幕宽度小于768px时，文章列表占全部宽度*/
+@media screen and (max-width:768px) {
+    #s_body_left {
+    width:90%;
+    }
+    #s_body_right {
+    width:100%;
+    }
+     #body_left {
+    width:100%;
+           }
+            #body_right {
+                width: 100%;
+            }
+}
 .article_list {
 border-bottom:1px dashed #9ad1fa;
 box-sizing:border-box;
@@ -237,3 +271,64 @@ margin-bottom:10px;
 color:#075DB3;
 }
     /*----------------------------技术分享------------------------*/
+    /*-----------------------------随笔分享样式-----------------*/
+.sb_goback {
+    height:60px;
+    float:left;
+    line-height:60px;
+font-size:20px;
+}
+    .sb_goback a {
+    color:#0094ff;
+    }
+.sb_Title {
+height:60px;
+text-align:center;
+line-height:60px;
+font-size:20px;
+}
+    .sb_Title a {
+    text-decoration:none;
+   font-weight:700;
+   color:#756F71;
+    }
+.sb_info {
+text-align:center;
+color:#999;
+border:1px dashed #9ad1fa;
+height:20px;
+line-height:20px;
+font-size:12px;
+}
+    .sb_info a {
+    text-decoration:none;
+    color:#63B120;
+    }
+.sb_tag {
+margin:10px 0;
+}
+.sb_tag_a {
+    text-decoration:none;
+    display:inline-block;
+    padding:4px 10px;
+    line-height:100%;
+    margin-right:10px;
+    border:1px solid #e4dddd;
+    color:#fff;
+    background-color:#808080;
+    border-radius:10px;
+}
+.sb_content {
+font-size:14px;
+line-height:28px;
+word-wrap:break-word;
+word-break:break-all;
+display:block;
+width:100%;
+margin-bottom:50px;
+}
+.article_list_title a:hover {
+text-decoration:underline;
+color:#0094ff;
+}
+/*-----------------------------随笔分享样式-----------------*/

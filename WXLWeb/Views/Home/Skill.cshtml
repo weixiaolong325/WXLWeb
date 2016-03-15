@@ -13,11 +13,13 @@
      <script src=" http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
      <script src="~/Scripts/MyJs.js"></script>
 </head>
-<body onload="active_li4()">
+<body onload="active_li_skill()">
+     <div id="top">
      @{Html.RenderPartial("Head");}
     <div id="l_top">
     
     </div>
+         </div> 
     <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">SKill分享</span>
        </div><div id="nav_txt_right">分享使人快乐~</div><div class="clear"></div>
     </div>
@@ -28,29 +30,23 @@
             foreach(var article in Model.Articles)
             {
             <div class="article_list">
-                 <div class="article_list_title"><a class="article_list_title" href="javascript:void()">@article.Title</a></div>
+                 <div class="article_list_title"><a class="article_list_title" href="@Url.Action("Article", "Home", new { id =article.ArticleId+".html"})">@article.Title</a></div>
                 <div class="article_list_info">发布时间:@article.CreateTime<span class="sp_blank"></span> 
                     作者: <a class="s_authname" href="javascript:void()">@article.UserName</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">@article.Type2</a>]</div>
                 <div class="article_list_content">
               摘要: @article.Abstract...
-                    <a class="article_readmore" href="javascript:void()">阅读全文</a>
+                    <a class="article_readmore" href="@Url.Action("Article", "Home", new { id =article.ArticleId+".html"})">阅读全文</a>
                 </div>
             </div>  
             }
-            <div class="page">第<span style="color:#00ff21">1</span>/16页
-                <a href="javascript:void(0);">上一页</a><span class="sp_blank"></span>1<span class="sp_blank"></span><a href="javascript:void(0);">2</a>
-                <a href="javascript:void(0);">3</a>
-                <a href="javascript:void(0);">4</a>
-                <a href="javascript:void(0);">5</a>
-                <a href="javascript:void(0);">下一页</a>
-            </div>
+               @ViewBag.page
             }
             else
             { <p style="text-align:center;">暂无内容~</p>}
                  </div>
      <div id="s_body_right"><h2 style="text-align:center">分类</h2>
          <p style="margin-left:10px;"><a href="javascript:void()">1.ASP.NET</a></p>
-           <p style="margin-left:10px;"><a href="javascript:void()"2.>ASP.NET MVC</a></p>
+           <p style="margin-left:10px;"><a href="javascript:void()">2.ASP.NET MVC</a></p>
           <p style="margin-left:10px;"><a href="javascript:void()">3.EF</a></p>
          <p style="margin-left:10px;"><a href="javascript:void()">4.HTML5</a></p>
          <p style="margin-left:10px;"><a href="javascript:void()">5.CSS3</a></p>

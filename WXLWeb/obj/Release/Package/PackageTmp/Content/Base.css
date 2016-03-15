@@ -147,7 +147,6 @@ width:290px;
         float:left;
         width:70%;
         min-width:350px;
-        margin-right:10px;
         border-right:3px dotted #808080;
         padding-right:10px;
         min-height:500px;
@@ -160,6 +159,7 @@ width:290px;
         font-size:14px;
         font-family:"微软雅黑";
         color:#808080;
+        margin-left:10px;
         }
         #l_body {
         padding-left:10px;
@@ -202,7 +202,6 @@ font-size:32px;
         float:left;
         width:70%;
         margin-top:10px;
-        margin-right:10px;
         border-right:3px dotted #808080;
         padding-right:10px;
         min-height:500px;
@@ -214,11 +213,12 @@ font-size:32px;
         font-size:14px;
         font-family:"微软雅黑";
         color:#808080;
+        margin-left:10px;
         }
     /*屏幕宽度小于768px时，文章列表占全部宽度*/
 @media screen and (max-width:768px) {
     #s_body_left {
-    width:90%;
+    width:100%;
     }
     #s_body_right {
     width:100%;

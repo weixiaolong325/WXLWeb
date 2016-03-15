@@ -215,10 +215,10 @@ font-size:32px;
         font-family:"微软雅黑";
         color:#808080;
         }
-    /*屏幕宽度小于500px时，文章列表占全部宽度*/
-@media screen and (max-width:620px) {
+    /*屏幕宽度小于768px时，文章列表占全部宽度*/
+@media screen and (max-width:768px) {
     #s_body_left {
-    width:100%;
+    width:90%;
     }
     #s_body_right {
     width:100%;

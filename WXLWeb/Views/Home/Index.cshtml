@@ -20,7 +20,7 @@
         <iframe width="290" scrolling="no" height="18" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&color=%230070C0&icon=1&wind=1&num=1"></iframe>
     </div>
       @{Html.RenderPartial("Head");}
-    </div>
+
         <!-- JiaThis Button BEGIN -->
     <div class="jiathis_style" style="margin-top:20px;">
 	<span class="jiathis_txt">分享到：</span>
@@ -35,13 +35,18 @@
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 <!-- JiaThis Button END -->
         </div>
-     <div id="I_content" style="margin-top:0px;font-size:20px;padding-top:20px;">
-        
-         <div class="I_content_right">  <b>欢迎访问韦小龙的个人网站，这个网站主要是用来分享和记录开发上遇到的问题和技术,还有记录生活的点滴。每周更新功能，请期待~</b></div>
-         <div class="clear"></div>
-     </div>
-    <div id="z_content" style="height:300px;border-bottom:1px dashed #999;"></div>
-
+    <div class="z_top2">
+       <div class="z_top2_dream" data-shadow="我的梦想，在路上">我的梦想，在路上</div>
+        </div> 
+    <div id="z_body">
+        <div id="z_body_left">
+            <div class="I_content_right">  <b>欢迎访问韦小龙的个人网站，这个网站主要是用来分享和记录开发上遇到的问题和技术,还有记录生活的点滴。每周更新功能，请期待~</b></div>
+            </div>
+             <div id="z_body_right"><h2 style="text-align:center">推荐</h2>
+         <p style="margin-left:10px;"><a href="javascript:void()">个人博客</a></p>
+                 </div>
+     <div class="clear"></div>
+     </div> 
 
     <div id="about_web">@Html.Raw("@") CopyRight 2016 www.wxiaolong.com<span class="sp_blank"></span>|<span class="sp_blank"></span><a href="@Url.Action("AboutMe")">联系我</a><span class="sp_blank"></span>粤ICP备15085148号-1</div>
 </body>

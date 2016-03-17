@@ -556,7 +556,6 @@
     <Content Include="Plug\Ueditor\third-party\video-js\font\vjs.woff" />
     <None Include="Properties\PublishProfiles\wxlWeb.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Images\%28zhaoxi.net%29.gif" />
     <Content Include="Images\title.ico" />
     <Content Include="Images\weixiaolong.jpg" />
     <Content Include="Plug\Ueditor\dialogs\anchor\anchor.html" />

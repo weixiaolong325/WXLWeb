@@ -34,7 +34,10 @@ color:#ff6a00 !important;
          background-image:url(../Images/top.jpg);
          background-repeat:no-repeat;
          -moz-background-size:100% 100%;  
-    background-size:100% 100%;
+         background-size:100% 100%;
+         -webkit-background-size:100% 100%;
+         -o-background-size:100% 100%;
+         -ms-background-size:100% 100%;
          margin:0;
          position:relative;
          padding-top:20px;
@@ -143,10 +146,12 @@ padding:5px;
 
     text-align: center;
   text-transform: uppercase;
+  -webkit-text-transform: uppercase;
   font-size: 2em;
   letter-spacing: 0.1em;
   color: #EEE;
   animation: rotate 2s ease-in-out alternate infinite;
+  -webkit-animation: rotate 2s ease-in-out alternate infinite;
 }
 .z_top2_dream:before {
     content: attr(data-shadow);
@@ -156,9 +161,32 @@ padding:5px;
   z-index: -1;
   margin: -0.1em 0 0 0;
   animation: skew 2s ease-in-out alternate infinite;
+  -webkit-animation: skew 2s ease-in-out alternate infinite;
   transform-origin: bottom;
+  -webkit-transform-origin: bottom;
     }
+/*主页文字动画*/
     @keyframes rotate {
+  from {
+    transform: rotateY(-10deg);
+    text-shadow:  1px -1px #CCC,
+                  2px -1px #BBB,
+                  3px -2px #AAA,
+                  4px -2px #999,
+                  5px -3px #888,
+                  6px -3px #777;
+  }
+  to {
+    transform: rotateY(10deg);
+    text-shadow:  -1px -1px #CCC,
+                  -2px -1px #BBB,
+                  -3px -2px #AAA,
+                  -4px -2px #999,
+                  -5px -3px #888,
+                  -6px -3px #777;
+  }
+}
+@-webkit-keyframes rotate {
   from {
     transform: rotateY(-10deg);
     text-shadow:  1px -1px #CCC,
@@ -186,6 +214,16 @@ padding:5px;
     transform: scaleY(0.3) skewX(-20deg);
   }
 }
+@-webkit-keyframes skew {
+  from {
+    transform: scaleY(0.3) skewX(-15deg);
+  }
+  to {
+    transform: scaleY(0.3) skewX(-20deg);
+  }
+}
+
+/*主页文字动画*/
  /*------------------------------主页样式-----------------------*/
  /*------------------------------留言板样式---------------------*/
   #l_top {
@@ -262,14 +300,15 @@ font-size:32px;
     line-height:25px;
 }
 #g_mejpg {
-     width:100%;
     height:200px;
    padding-left:50px;
+  
 }
 .a_me_img {
     width:194px;
     height:191px;
 }
+
   /*-------------------------------关于我样式--------------------*/
   /*----------------------------技术分享------------------------*/
     #s_body {
@@ -289,7 +328,7 @@ font-size:32px;
         #s_body_right {
         padding-left:10px;
         float:left;
-        width:20%;
+        width:25%;
         font-size:14px;
         font-family:"微软雅黑";
         color:#808080;

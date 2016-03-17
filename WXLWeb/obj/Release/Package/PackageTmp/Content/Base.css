@@ -34,7 +34,10 @@ color:#ff6a00 !important;
          background-image:url(../Images/top.jpg);
          background-repeat:no-repeat;
          -moz-background-size:100% 100%;  
-    background-size:100% 100%;
+         background-size:100% 100%;
+         -webkit-background-size:100% 100%;
+         -o-background-size:100% 100%;
+         -ms-background-size:100% 100%;
          margin:0;
          position:relative;
          padding-top:20px;
@@ -158,7 +161,48 @@ padding:5px;
   animation: skew 2s ease-in-out alternate infinite;
   transform-origin: bottom;
     }
+/*主页文字动画*/
     @keyframes rotate {
+  from {
+    transform: rotateY(-10deg);
+    text-shadow:  1px -1px #CCC,
+                  2px -1px #BBB,
+                  3px -2px #AAA,
+                  4px -2px #999,
+                  5px -3px #888,
+                  6px -3px #777;
+  }
+  to {
+    transform: rotateY(10deg);
+    text-shadow:  -1px -1px #CCC,
+                  -2px -1px #BBB,
+                  -3px -2px #AAA,
+                  -4px -2px #999,
+                  -5px -3px #888,
+                  -6px -3px #777;
+  }
+}
+@-moz-keyframes rotate {
+  from {
+    transform: rotateY(-10deg);
+    text-shadow:  1px -1px #CCC,
+                  2px -1px #BBB,
+                  3px -2px #AAA,
+                  4px -2px #999,
+                  5px -3px #888,
+                  6px -3px #777;
+  }
+  to {
+    transform: rotateY(10deg);
+    text-shadow:  -1px -1px #CCC,
+                  -2px -1px #BBB,
+                  -3px -2px #AAA,
+                  -4px -2px #999,
+                  -5px -3px #888,
+                  -6px -3px #777;
+  }
+}
+@-webkit-keyframes rotate {
   from {
     transform: rotateY(-10deg);
     text-shadow:  1px -1px #CCC,
@@ -186,6 +230,24 @@ padding:5px;
     transform: scaleY(0.3) skewX(-20deg);
   }
 }
+@-moz-keyframes  skew {
+  from {
+    transform: scaleY(0.3) skewX(-15deg);
+  }
+  to {
+    transform: scaleY(0.3) skewX(-20deg);
+  }
+}
+@-webkit-keyframes skew {
+  from {
+    transform: scaleY(0.3) skewX(-15deg);
+  }
+  to {
+    transform: scaleY(0.3) skewX(-20deg);
+  }
+}
+
+/*主页文字动画*/
  /*------------------------------主页样式-----------------------*/
  /*------------------------------留言板样式---------------------*/
   #l_top {

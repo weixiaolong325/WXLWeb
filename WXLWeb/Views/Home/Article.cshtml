@@ -10,8 +10,15 @@
     <link rel="Shortcut Icon" href="/Images/title.ico" />
     <title>@Model.article.Title</title>
     <link href="~/Content/Base.css" rel="stylesheet" />
+    <link href="~/Plug/Ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" />
      <script src=" http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
+    <script src="~/Plug/Ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
     <script src="~/Scripts/MyJs.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            SyntaxHighlighter.highlight();
+        });
+    </script>
 </head>
 <body onload="duoshuoMessageBoard()">
      <div id="top">

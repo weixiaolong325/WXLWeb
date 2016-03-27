@@ -73,28 +73,55 @@ namespace WXLWeb.Controllers
                                      new SqlParameter("@UserName",SqlDbType.NVarChar,10){Value=article.UserName},
                                      new SqlParameter("@ArticleId2",SqlDbType.VarChar,20){Value=article.ArticleId2},
                                   new SqlParameter("@Abstract",SqlDbType.NVarChar,220){Value=article.Abstract} };
+           
+            
             //插入文章
-            if (SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param) > 0)
+            using (SqlTransaction tran = SQLHelper.BeginTransaction())
             {
-                //文章标签
-                if (article.Tag != null)
-                {
-                    List<string> str = article.Tag.Split(",，".ToCharArray()).ToList<string>();
-                    foreach (var tag in str)
-                    {
-                        string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
-                        SqlParameter[] paramTag ={new SqlParameter("@ArticleId2",article.ArticleId2),
+                try {
+                    SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param,tran);
+                     if (article.Tag != null)
+                     {
+                         List<string> str = article.Tag.Split(",，".ToCharArray()).ToList<string>();
+                         foreach (var tag in str)
+                         {
+                             string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
+                             SqlParameter[] paramTag ={new SqlParameter("@ArticleId2",article.ArticleId2),
                                                 new SqlParameter("@TagName",tag)};
-                        //插入标签
-                        SQLHelper.ExecuteNonQuery(sqlAddTag, CommandType.Text, paramTag);
-                    }
+                             //插入标签
+                             SQLHelper.ExecuteNonQuery(sqlAddTag, CommandType.Text, paramTag,tran);
+                         }
+                     }
+                     tran.Commit();//提交事务
+                     return Content("添加 成功");
+
                 }
-                return Content("添加成功!");
+                catch {
+                    tran.Rollback();//回滚
+                    return View();
+                }
             }
-            else
-            {
-                return View();
-            }
+            //if (SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param) > 0)
+            //{
+            //    //文章标签
+            //    if (article.Tag != null)
+            //    {
+            //        List<string> str = article.Tag.Split(",，".ToCharArray()).ToList<string>();
+            //        foreach (var tag in str)
+            //        {
+            //            string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
+            //            SqlParameter[] paramTag ={new SqlParameter("@ArticleId2",article.ArticleId2),
+            //                                    new SqlParameter("@TagName",tag)};
+            //            //插入标签
+            //            SQLHelper.ExecuteNonQuery(sqlAddTag, CommandType.Text, paramTag);
+            //        }
+            //    }
+            //    return Content("添加成功!");
+            //}
+            //else
+            //{
+            //    return View();
+            //}
         }
 
         //文章列表

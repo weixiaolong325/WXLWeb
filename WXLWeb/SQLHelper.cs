@@ -112,17 +112,11 @@ namespace WXLWeb
         public static int ExecuteNonQuery(string sql, CommandType cmdType, SqlParameter[] param,SqlTransaction tran)
         {
             int row=0;
-            try
-            {
                 SqlCommand cmd = new SqlCommand(sql,tran.Connection);
                 cmd.Transaction = tran;
                 cmd.CommandType = cmdType;
                 cmd.Parameters.AddRange(param);
                 row = cmd.ExecuteNonQuery();
-            }
-            catch { 
-            
-            }
             return row;
         }
 

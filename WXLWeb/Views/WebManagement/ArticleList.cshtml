@@ -45,7 +45,7 @@
                             else if (article.Type1 ==1) {<td>技术分享</td> }
                                 <td>@article.CreateTime</td>
                     <td>@article.UserName</td>
-                    <td><a href="@Url.Action("AlterArticle", "WebManagement", new {id=article.ArticleId })">修改</a>&nbsp;<a href="javascript:void();">删除</a></td>
+                    <td><a href="@Url.Action("AlterArticle", "WebManagement", new {id=article.ArticleId })">修改</a>&nbsp;<a onclick="return tipDelete();" href="@Url.Action("DeleteArticle", "WebManagement", new {id=article.ArticleId2 })">删除</a></td>
                 </tr>
                         }
                         i++;
@@ -69,3 +69,13 @@
     </div>
 </body>
 </html>
+<script type="text/javascript">
+    function tipDelete()
+    {
+        if (!confirm("确定要删除?"))
+        {
+            return false;
+        }
+       
+    }
+</script>

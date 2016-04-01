@@ -220,6 +220,10 @@
     <Content Include="Images\Login\panel-h.gif" />
     <Content Include="Images\mylogo.gif" />
     <Content Include="Images\top.jpg" />
+    <Content Include="Images\z_pic4.jpg" />
+    <Content Include="Images\z_pic2.JPG" />
+    <Content Include="Images\z_pic3.JPG" />
+    <Content Include="Images\z_pic1.JPG" />
     <Content Include="Plug\EasyUi\demo.css" />
     <Content Include="Plug\EasyUi\easyloader.js" />
     <Content Include="Plug\EasyUi\jquery-1.8.0.min.js" />

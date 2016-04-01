@@ -11,13 +11,15 @@
     <link rel="Shortcut Icon" href="/Images/title.ico" />
     <title>韦小龙个人网站-(www.wxiaolong.com)-个人博客</title>
     <link href="~/Content/Base.css" rel="stylesheet" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src=" http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="~/Scripts/MyJs.js"></script>
 </head>
 <body onload="active_li_index()">
     <div id="top">
     <div id="z_weather">
-        <iframe width="290" scrolling="no" height="18" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&color=%230070C0&icon=1&wind=1&num=1"></iframe>
+        <iframe width="300" scrolling="no" height="18" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&color=%230070C0&icon=1&wind=1&num=1"></iframe>
     </div>
       @{Html.RenderPartial("Head");}
 
@@ -40,6 +42,33 @@
         </div> 
     <div id="z_body">
         <div id="z_body_left">
+            <div id="z_Carousel">
+                <div id="myCarousel" class="carousel slide">
+        <ol class="carousel-indicators">
+           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+           <li data-target="#myCarousel" data-slide-to="1"></li>
+           <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol> 
+        <div class="carousel-inner">
+            <div class="item active">
+                 <img style ="height:120px;width:70%;display:inline" src="/Images/z_pic1.jpg" alt="图片" />
+            </div>
+            <div class="item">
+                <img style ="height:120px;width:70%;display:inline" src="/Images/z_pic2.JPG" alt="图片" />
+            </div>
+             <div class="item">
+                <img style ="height:120px;width:70%;display:inline" src="/Images/z_pic3.JPG" alt="图片" />
+            </div>
+             <div class="item">
+                <img style ="height:120px;width:70%;display:inline" src="/Images/z_pic4.JPG" alt="图片" />
+            </div>
+
+      </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+            </div>
             <div class="I_content_right">  <b>欢迎访问韦小龙的个人网站，这个网站主要是用来分享和记录开发上遇到的问题和技术,还有记录生活的点滴。每周更新功能，请期待~</b></div>
             </div>
              <div id="z_body_right"><h2 style="text-align:center">推荐</h2>

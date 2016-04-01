@@ -18,6 +18,7 @@ function active_li_messageboard() {
 function active_li_index() {
     var a = $("#nav_ul_index");
     a[0].setAttribute("class", "active_li");
+    $('.carousel').carousel()
 }
 //关于我
 function active_li_aboutme() {

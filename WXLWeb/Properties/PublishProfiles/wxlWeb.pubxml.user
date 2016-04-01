@@ -62,7 +62,7 @@
       <publishTime>03/09/2016 10:41:07</publishTime>
     </File>
     <File Include="bin/WXLWeb.dll">
-      <publishTime>03/29/2016 10:02:13</publishTime>
+      <publishTime>04/01/2016 14:55:47</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>03/09/2016 10:41:05</publishTime>
@@ -98,7 +98,7 @@
       <publishTime>03/09/2016 10:41:07</publishTime>
     </File>
     <File Include="Content/Base.css">
-      <publishTime>03/28/2016 15:18:29</publishTime>
+      <publishTime>04/01/2016 14:29:07</publishTime>
     </File>
     <File Include="Content/Login.css">
       <publishTime>03/15/2016 11:53:29</publishTime>
@@ -309,6 +309,18 @@
     </File>
     <File Include="Images/weixiaolong.jpg">
       <publishTime>03/09/2016 10:41:04</publishTime>
+    </File>
+    <File Include="Images/z_pic1.JPG">
+      <publishTime>04/01/2016 14:28:51</publishTime>
+    </File>
+    <File Include="Images/z_pic2.JPG">
+      <publishTime>04/01/2016 14:18:56</publishTime>
+    </File>
+    <File Include="Images/z_pic3.JPG">
+      <publishTime>04/01/2016 14:24:01</publishTime>
+    </File>
+    <File Include="Images/z_pic4.jpg">
+      <publishTime>04/01/2016 14:31:32</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>03/09/2016 10:41:05</publishTime>
@@ -3425,7 +3437,7 @@
       <publishTime>03/09/2016 10:41:04</publishTime>
     </File>
     <File Include="Scripts/MyJs.js">
-      <publishTime>03/15/2016 11:53:38</publishTime>
+      <publishTime>04/01/2016 11:06:28</publishTime>
     </File>
     <File Include="Scripts/_references.js">
       <publishTime>03/09/2016 10:41:04</publishTime>
@@ -3440,7 +3452,7 @@
       <publishTime>03/29/2016 11:00:59</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>03/17/2016 16:03:17</publishTime>
+      <publishTime>04/01/2016 14:29:07</publishTime>
     </File>
     <File Include="Views/Home/Learn.cshtml">
       <publishTime>03/28/2016 15:18:29</publishTime>
@@ -3488,7 +3500,7 @@
       <publishTime>03/09/2016 10:41:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/29/2016 11:01:16</publishTime>
+      <publishTime>04/01/2016 14:55:53</publishTime>
     </File>
   </ItemGroup>
 </Project>

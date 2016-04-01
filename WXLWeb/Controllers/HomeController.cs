@@ -63,7 +63,7 @@ namespace WXLWeb.Controllers
                 }
                 p = Convert.ToInt32(page) < 1 ? 1 : Convert.ToInt32(page);
             }
-            return View(articleView(2,1,"/Home/Life"));
+            return View(articleView(2,p,"/Home/Life"));
         }
         //学习
         public ActionResult Learn(string page)
@@ -77,9 +77,9 @@ namespace WXLWeb.Controllers
                 {
                     return Content("查看内容不存在");
                 }
-                p = Convert.ToInt32(page) < 1 ? 1 : Convert.ToInt32(page);
+                p = Convert.ToInt32(page) <=1 ? 1 : Convert.ToInt32(page);
             }
-            return View(articleView(3,1,"/Home/Learn"));
+            return View(articleView(3,p,"/Home/Learn"));
         }
         //查看文章
         public ActionResult Article(string id)

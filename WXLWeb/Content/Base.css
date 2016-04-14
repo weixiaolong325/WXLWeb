@@ -400,6 +400,15 @@ margin-bottom:10px;
 .article_readmore {
 color:#075DB3;
 }
+.ul_tag {
+margin:0;
+padding:0;
+list-style:none;
+margin-left:30%;
+}
+    .ul_tag > li {
+    margin-top:7px;
+    }
     /*----------------------------技术分享------------------------*/
     /*-----------------------------随笔分享样式-----------------*/
 .sb_goback {
@@ -414,7 +423,7 @@ font-size:20px;
 .sb_Title {
 height:60px;
 text-align:center;
-line-height:60px;
+/*line-height:60px;*/
 font-size:20px;
 }
     .sb_Title a {

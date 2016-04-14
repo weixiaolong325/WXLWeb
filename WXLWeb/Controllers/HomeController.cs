@@ -63,7 +63,8 @@ namespace WXLWeb.Controllers
                 }
                 p = Convert.ToInt32(page) < 1 ? 1 : Convert.ToInt32(page);
             }
-            return View(articleView(2,p,"/Home/Life"));
+            int articleType = (int)(ArticleTypeEnum.Life);
+            return View(articleView(articleType, p, "/Home/Life"));
         }
         //学习
         public ActionResult Learn(string page)
@@ -79,7 +80,8 @@ namespace WXLWeb.Controllers
                 }
                 p = Convert.ToInt32(page) <=1 ? 1 : Convert.ToInt32(page);
             }
-            return View(articleView(3,p,"/Home/Learn"));
+            int articleType = Convert.ToInt32(ArticleTypeEnum.learn);
+            return View(articleView(articleType, p, "/Home/Learn"));
         }
         //查看文章
         public ActionResult Article(string id)
@@ -157,10 +159,11 @@ namespace WXLWeb.Controllers
         {
             ArticleView articleList = new ArticleView();
             List<Article> articles = new List<Article>();
+            List<TagCount> tagCountList = new List<TagCount>();
 
             int linNum = 5;//一页显示多少条记录
-            int Type1 =type1 ;//类别为
-            string sql = string.Format("select COUNT(1) from WXL_Article where Type1={0} and Isdel=0", type1);
+            int delStaus=Convert.ToInt32(IsDelEnum.normal);
+            string sql = string.Format("select COUNT(1) from WXL_Article where Type1={0} and Isdel={1}", type1,delStaus);
             //总条数
             int NumSum = Convert.ToInt32(SQLHelper.ExecuteScalar(sql, CommandType.Text));
             //总页数
@@ -171,7 +174,7 @@ namespace WXLWeb.Controllers
             articleList.pageNum = pageNum;
             SqlParameter[] param ={new SqlParameter("@LineNum",linNum),
                                      new SqlParameter("@pageNum",pageNum),
-                                  new SqlParameter("@Type1",Type1)};
+                                  new SqlParameter("@Type1",type1)};
             ViewBag.page = new MvcHtmlString(commHelper.page(pageNum, pageNumSum,url, "page", 5));
             //文章列表
             using (SqlDataReader sdr = SQLHelper.ExecuteReader("Long_ArticleToPage", CommandType.StoredProcedure, param))
@@ -193,9 +196,26 @@ namespace WXLWeb.Controllers
 
                         articles.Add(article);
                     }
-                    articleList.Articles = articles;
                 }
             }
+           
+            //我的标签列表
+            string sql_tagCount =string.Format("select top 10 a.TagName,COUNT(1) countnum from WXL_Tag a inner join WXL_Article b on a.ArticleId2=b.ArticleId2 and b.Type1={0} and a.IsDel=0 group by a.TagName order by countnum desc",type1);
+            using (SqlDataReader sdr = SQLHelper.ExecuteReader(sql_tagCount, CommandType.Text))
+            {
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        TagCount tagCount = new TagCount();
+                        tagCount.TagName = sdr["TagName"].ToString();
+                        tagCount.CountNum = sdr["CountNum"].ToString();
+                        tagCountList.Add(tagCount);
+                    }
+                }
+            }
+            articleList.Articles = articles;
+            articleList.tagCounts = tagCountList;
             return articleList;
         }
 

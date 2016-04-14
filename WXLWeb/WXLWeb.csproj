@@ -39,10 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LitJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Plug\Kineditor\asp.net\bin\LitJSON.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -136,7 +132,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\ArticleTypeEnum.cs" />
+    <Compile Include="Models\IsDelEnum.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TagCount.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Plug\Ueditor\net\App_Code\Config.cs" />
     <Compile Include="Plug\Ueditor\net\App_Code\ConfigHandler.cs" />
@@ -219,6 +218,7 @@
     <Content Include="Images\Login\panel-f.gif" />
     <Content Include="Images\Login\panel-h.gif" />
     <Content Include="Images\mylogo.gif" />
+    <Content Include="Images\title_cata.gif" />
     <Content Include="Images\top.jpg" />
     <Content Include="Images\z_pic4.jpg" />
     <Content Include="Images\z_pic2.JPG" />
@@ -880,6 +880,7 @@
     <Content Include="Views\Home\Article.cshtml" />
     <Content Include="Views\WebManagement\ArticleList.cshtml" />
     <Content Include="Views\WebManagement\AlterArticle.cshtml" />
+    <Content Include="Views\Shared\MyTags.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

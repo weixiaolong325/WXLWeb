@@ -1,0 +1,13 @@
+﻿ <div id="s_body_right"><h2 class="tagtitle" style="text-align:center">我的标签</h2>
+              @if(Model.tagCounts!=null)
+              {
+                         <ul class="ul_tag">
+                  @foreach(var tag in Model.tagCounts)
+                  {
+                          <li><a href="javascript:void()">@tag.TagName</a>(@tag.CountNum)</li>
+                   }
+                        <li><a href="javascript:void()">更多</a> </li>
+                       </ul>
+              }
+                 <h2 class="tagtitle" style="text-align:center">我的随笔分类</h2>
+                 </div>

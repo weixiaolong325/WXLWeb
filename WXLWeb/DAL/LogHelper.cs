@@ -22,8 +22,8 @@ namespace WXLWeb.DAL
             //获取HttpContext上下文对象
             HttpContext context = HttpContext.Current;
             //获取日志文件的路径
-            string path = context.Request.MapPath("~/App_Data/");
-
+            //string path = context.Request.MapPath("~/App_Data/");
+            string path = context.Request.MapPath("~/Logtxt/");
             //开启一个新的线程，这个线程的作用就是把_queue中的错误信息不断的写入到日志文件中
             Thread tWriteLog = new Thread(new ThreadStart(() =>
             {

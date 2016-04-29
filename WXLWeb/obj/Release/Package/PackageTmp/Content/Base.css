@@ -228,6 +228,26 @@ padding:5px;
 margin:5px;
 text-align:center;
 }
+#I_content_right {
+padding:3px;
+}
+#Content_right_top {
+font:700 20px "微软雅黑", Arial, Helvetica, sans-serif;
+margin:20px 0px;
+}
+    #Content_right_top span {
+    color:#FE5187;
+    }
+.z_right_title {
+color:#fa82f7;
+font-weight:700;
+}
+#z_body_right li {
+ height:25px;
+ overflow-x:hidden;/*超出隐藏*/
+ text-overflow:ellipsis;/*文字隐藏后添加省略号*/
+ white-space:nowrap;/*强制不换行*/
+}
  /*------------------------------主页样式-----------------------*/
  /*------------------------------留言板样式---------------------*/
   #l_top {

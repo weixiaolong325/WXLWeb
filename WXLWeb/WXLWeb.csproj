@@ -127,6 +127,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebManagementController.cs" />
+    <Compile Include="DAL\IndexDAL.cs" />
     <Compile Include="DAL\LogHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -148,10 +149,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHelper.cs" />
     <Compile Include="ViewModels\AlterArticleView.cs" />
+    <Compile Include="ViewModels\ArticleNew.cs" />
     <Compile Include="ViewModels\ArticleRead.cs" />
     <Compile Include="ViewModels\ArticleView.cs" />
+    <Compile Include="ViewModels\IndexView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Article.css" />
     <Content Include="Content\Base.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Post.css" />
@@ -853,6 +857,8 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="ReWrite\404.html" />
     <Content Include="ReWrite\Error.html" />
+    <Content Include="Upload\image\20160426\6359726778774937508071068.jpg" />
+    <Content Include="Upload\image\20160426\6359726778781187502584393.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -884,8 +890,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Logtxt\" />
     <Folder Include="Plug\Ueditor\net\Bin\" />
-    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

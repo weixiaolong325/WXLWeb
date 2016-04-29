@@ -19,8 +19,12 @@ namespace WXLWeb.Controllers
 
         public ActionResult Index()
         {
-
-            return View();
+            IndexView indexView = new IndexView();
+            DAL.IndexDAL indexDal=new DAL.IndexDAL();
+            //最新文章
+            string sql_newArticle = "select top 10 ArticleId,Title from WXL_Article with (nolock) where Isdel=0 order by CreateTime desc";
+            indexView.newArticles = indexDal.GetArticleNews(sql_newArticle);
+            return View(indexView);
         }
 
         //留言板

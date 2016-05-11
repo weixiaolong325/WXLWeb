@@ -88,11 +88,14 @@
                 <ul>
                     @foreach(var article in Model.newArticles)
                      {
-                        <li><a href="@Url.Action("Article","Home",new {id=@article.Id})" title="@article.Title">@article.Title</a></li>
+                        <li><a href="@Url.Action("Article","Home",new {id=@article.Id+".html"})" title="@article.Title">@article.Title</a></li>
                  }
                 </ul>
                  }
              <h4 class="z_right_title">友情链接</h4>
+            <ul><li>
+                <a href="http://www.pm24.cn/">P民24小时网</a>
+                </li></ul>
         </div>
         <div class="clear"></div>
     </div>

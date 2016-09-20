@@ -11,6 +11,7 @@ using WXLWeb.ViewModels;
 
 namespace WXLWeb.Controllers
 {
+            [Authentication]
     public class WebManagementController : Controller
     {
         //
@@ -20,13 +21,12 @@ namespace WXLWeb.Controllers
         /// </summary>
         /// <returns></returns>
         
-        [Authentication]
+
         public ActionResult Index()
         {
             return View();
         }
         //增加文章
-           [Authentication]
         public ActionResult AddArticle()
         {
             Article article = new Article();
@@ -39,7 +39,6 @@ namespace WXLWeb.Controllers
             return View(article);
         }
         //增加文章
-        [Authentication]
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult AddArticle(Article article,FormCollection fc)
@@ -73,32 +72,58 @@ namespace WXLWeb.Controllers
                                      new SqlParameter("@UserName",SqlDbType.NVarChar,10){Value=article.UserName},
                                      new SqlParameter("@ArticleId2",SqlDbType.VarChar,20){Value=article.ArticleId2},
                                   new SqlParameter("@Abstract",SqlDbType.NVarChar,220){Value=article.Abstract} };
+           
+            
             //插入文章
-            if (SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param) > 0)
+            using (SqlTransaction tran = SQLHelper.BeginTransaction())
             {
-                //文章标签
-                if (article.Tag != null)
-                {
-                    List<string> str = article.Tag.Split(",，".ToCharArray()).ToList<string>();
-                    foreach (var tag in str)
-                    {
-                        string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
-                        SqlParameter[] paramTag ={new SqlParameter("@ArticleId2",article.ArticleId2),
+                try {
+                    SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param,tran);
+                     if (article.Tag != null)
+                     {
+                         List<string> str = article.Tag.Split(",，".ToCharArray()).ToList<string>();
+                         foreach (var tag in str)
+                         {
+                             string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
+                             SqlParameter[] paramTag ={new SqlParameter("@ArticleId2",article.ArticleId2),
                                                 new SqlParameter("@TagName",tag)};
-                        //插入标签
-                        SQLHelper.ExecuteNonQuery(sqlAddTag, CommandType.Text, paramTag);
-                    }
+                             //插入标签
+                             SQLHelper.ExecuteNonQuery(sqlAddTag, CommandType.Text, paramTag,tran);
+                         }
+                     }
+                     tran.Commit();//提交事务
+                     return Content("添加 成功");
+
                 }
-                return Content("添加成功!");
+                catch {
+                    tran.Rollback();//回滚
+                    return View();
+                }
             }
-            else
-            {
-                return View();
-            }
+            //if (SQLHelper.ExecuteNonQuery(sql, CommandType.Text, param) > 0)
+            //{
+            //    //文章标签
+            //    if (article.Tag != null)
+            //    {
+            //        List<string> str = article.Tag.Split(",，".ToCharArray()).ToList<string>();
+            //        foreach (var tag in str)
+            //        {
+            //            string sqlAddTag = "insert into WXL_Tag(ArticleId2,TagName) values(@ArticleId2,@TagName)";
+            //            SqlParameter[] paramTag ={new SqlParameter("@ArticleId2",article.ArticleId2),
+            //                                    new SqlParameter("@TagName",tag)};
+            //            //插入标签
+            //            SQLHelper.ExecuteNonQuery(sqlAddTag, CommandType.Text, paramTag);
+            //        }
+            //    }
+            //    return Content("添加成功!");
+            //}
+            //else
+            //{
+            //    return View();
+            //}
         }
 
         //文章列表
-        [Authentication]
         public ActionResult ArticleList(string page)
         {
             //默认第一页
@@ -121,7 +146,6 @@ namespace WXLWeb.Controllers
         /// <param name="type1">文章类别</param>
         /// <param name="pageNum">第几页</param>
         /// <returns></returns>
-        [Authentication]
         private ArticleView articleView(int pageNum, string url)
         {
             ArticleView articleList = new ArticleView();
@@ -154,6 +178,7 @@ namespace WXLWeb.Controllers
                         article.Type1 = Convert.ToInt32(sdr["Type1"]);
                         article.Type2 = sdr["Type2"].ToString();
                         article.CreateTime = Convert.ToDateTime(sdr["CreateTime"]).ToString("yyyy-MM-dd HH:mm:ss");
+                        article.ArticleId2 = sdr["ArticleId2"].ToString();
                         article.UserId = sdr["UserId"].ToString();
                         article.UserName = sdr["UserName"].ToString();
                         article.LookNum = Convert.ToInt32(sdr["LookNum"]);
@@ -168,7 +193,6 @@ namespace WXLWeb.Controllers
         }
 
         //修改文章
-        //[Authentication]
         public ActionResult AlterArticle(string id)
         {
             AlterArticleView alterArticleView = new AlterArticleView();
@@ -314,5 +338,29 @@ namespace WXLWeb.Controllers
                 return Redirect("/ReWrite/Error.html");
             }
         }
+
+                /// <summary>
+                /// 删除文章
+                /// </summary>
+                /// <param name="id"></param>
+                /// <returns></returns>
+         public ActionResult DeleteArticle(string id)
+         {
+             string id2 = id;
+             SqlParameter[] param={new SqlParameter("@ArticleId2",id2)};
+             try {
+                 string result=SQLHelper.ExecuteScalar("DeleteAritcle", CommandType.StoredProcedure, param);
+                 if (result=="0")
+                 {
+                     return Content("删除失败");
+                 }
+                 return RedirectToAction("ArticleList");
+             }
+             catch 
+             {
+                 return Content("删除失败");
+             }
+            
+         }
     }
 }

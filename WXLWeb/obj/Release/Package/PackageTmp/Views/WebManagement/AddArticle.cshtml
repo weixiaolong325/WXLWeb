@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width" />
      <link rel="Shortcut Icon" href="/Images/title.ico" />
     <title>新增随笔</title>
+    <link href="~/Plug/Ueditor/themes/iframe.css" rel="stylesheet" />
+    <script src="~/Plug/Ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
   <!-- 配置文件 -->
    <script src="~/Plug/Ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -18,8 +20,10 @@
         window.onload = function () {
             //initialFrameWidth这个参数是宽跟当前窗口自动改变大小
             var ue = UE.getEditor('container', { initialFrameWidth: null });
-
         }
+        $(function () {
+            SyntaxHighlighter.highlight();
+        });
     </script>
 </head>
 <body>
@@ -30,7 +34,7 @@
     <p>正文:</p>
     <div>
        <!-- 加载编辑器的容器 -->
-    <script id="container" name="content" style="max-width:800px; type="text/plain">
+    <script id="container" name="content" style="max-width:800px;height:600px;" type="text/plain">
 
     </script>
     </div>

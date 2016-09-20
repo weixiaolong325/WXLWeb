@@ -101,6 +101,24 @@ namespace WXLWeb
             return row;
         }
         #endregion
+        /// <summary>
+        /// 增删改或执行储存过程,带参数,带事务
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="cmdType"></param>
+        /// <param name="param"></param>
+        /// <param name="tran">事务</param>
+        /// <returns></returns>
+        public static int ExecuteNonQuery(string sql, CommandType cmdType, SqlParameter[] param,SqlTransaction tran)
+        {
+            int row=0;
+                SqlCommand cmd = new SqlCommand(sql,tran.Connection);
+                cmd.Transaction = tran;
+                cmd.CommandType = cmdType;
+                cmd.Parameters.AddRange(param);
+                row = cmd.ExecuteNonQuery();
+            return row;
+        }
 
         #region 查询 返回DataTable
         /// <summary>
@@ -250,5 +268,18 @@ namespace WXLWeb
             return result;
         }
         #endregion
+
+        /// <summary>
+        /// 创建事务
+        /// </summary>
+        /// <returns></returns>
+        public static SqlTransaction BeginTransaction()
+        {
+            SqlConnection conn = new SqlConnection(connStr);
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            return tran;
+        }
+
     }
 }

@@ -13,6 +13,8 @@ namespace WXLWeb.ViewModels
         public int pageNum { get; set; }
         //总页数
         public int pageNumSum { get; set; }
+        //我的标签
+        public IEnumerable<TagCount> tagCounts { get; set; }
 
     }
 }

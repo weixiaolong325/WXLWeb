@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
      <link rel="Shortcut Icon" href="/Images/title.ico" />
     <title>学海无涯</title>
      <link href="~/Content/Base.css" rel="stylesheet" />
@@ -44,9 +44,7 @@
             else
             { <p style="text-align:center;">暂无内容~</p>}
              </div>
-             <div id="s_body_right"><h2 style="text-align:center">分类</h2>
-         <p style="margin-left:10px;"><a href="javascript:void()">个人博客</a></p>
-                 </div>
+         @{Html.RenderPartial("MyTags");}
      <div class="clear"></div>
      </div> 
 </body>

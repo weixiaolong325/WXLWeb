@@ -214,7 +214,6 @@ C:\Users\admin\WXLWeb\WXLWeb\bin\WXLWeb.pdb
 C:\Users\admin\WXLWeb\WXLWeb\bin\Antlr3.Runtime.dll
 C:\Users\admin\WXLWeb\WXLWeb\bin\Common.dll
 C:\Users\admin\WXLWeb\WXLWeb\bin\EntityFramework.dll
-C:\Users\admin\WXLWeb\WXLWeb\bin\LitJSON.dll
 C:\Users\admin\WXLWeb\WXLWeb\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\admin\WXLWeb\WXLWeb\bin\Newtonsoft.Json.dll
 C:\Users\admin\WXLWeb\WXLWeb\bin\System.Net.Http.Formatting.dll

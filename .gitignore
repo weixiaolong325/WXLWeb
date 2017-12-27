@@ -2,7 +2,7 @@
 Thumbs.db
 ehthumbs.db
 obj
-bin
+#bin
 *.suo
 #*.sln
 # Folder config file

@@ -4,7 +4,7 @@ ehthumbs.db
 obj
 bin
 *.suo
-*.sln
+#*.sln
 # Folder config file
 Desktop.ini
 

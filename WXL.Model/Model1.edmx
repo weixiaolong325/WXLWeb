@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="WXL_Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContentTxt" Type="text" Nullable="false" />
+          <Property Name="Type1" Type="int" Nullable="false" />
+          <Property Name="Type2" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="AlterTime" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="LookNum" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Abstract" Type="nvarchar" MaxLength="220" Nullable="false" />
+          <Property Name="Isdel" Type="int" Nullable="false" />
+          <Property Name="ArticleId2" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="WXL_MENU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pid" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="100" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Ico" Type="varchar" MaxLength="50" />
+          <Property Name="Sort" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WXL_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WXL_RoleMenu_Mid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuType" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WXL_Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId2" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WXL_UserMenu_Mid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WXL_UserRole_Mid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WXL_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserPwd" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="10" />
+          <Property Name="SuperAdmin" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityContainer Name="DbModelStoreContainer">
+          <EntitySet Name="WXL_Article" EntityType="Self.WXL_Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WXL_MENU" EntityType="Self.WXL_MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WXL_Role" EntityType="Self.WXL_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WXL_RoleMenu_Mid" EntityType="Self.WXL_RoleMenu_Mid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WXL_Tag" EntityType="Self.WXL_Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WXL_UserMenu_Mid" EntityType="Self.WXL_UserMenu_Mid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WXL_UserRole_Mid" EntityType="Self.WXL_UserRole_Mid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WXL_Users" EntityType="Self.WXL_Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="WXL_Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContentTxt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type1" Type="Int32" Nullable="false" />
+          <Property Name="Type2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AlterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LookNum" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Abstract" Type="String" MaxLength="220" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Isdel" Type="Int32" Nullable="false" />
+          <Property Name="ArticleId2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WXL_Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TagName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="qds178346566_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="WXL_Article" EntityType="Self.WXL_Article" />
+          <EntitySet Name="WXL_Tag" EntityType="Self.WXL_Tag" />
+          <EntitySet Name="WXL_Users" EntityType="DbModel.WXL_Users" />
+          <EntitySet Name="WXL_MENU" EntityType="DbModel.WXL_MENU" />
+          <EntitySet Name="WXL_RoleMenu_Mid" EntityType="DbModel.WXL_RoleMenu_Mid" />
+          <EntitySet Name="WXL_Role" EntityType="DbModel.WXL_Role" />
+          <EntitySet Name="WXL_UserMenu_Mid" EntityType="DbModel.WXL_UserMenu_Mid" />
+          <EntitySet Name="WXL_UserRole_Mid" EntityType="DbModel.WXL_UserRole_Mid" />
+        </EntityContainer>
+        <EntityType Name="WXL_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserPwd" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SuperAdmin" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WXL_MENU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pid" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Ico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WXL_RoleMenu_Mid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WXL_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WXL_UserMenu_Mid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WXL_UserRole_Mid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbModelStoreContainer" CdmEntityContainer="qds178346566_dbEntities">
+          <EntitySetMapping Name="WXL_Article">
+            <EntityTypeMapping TypeName="DbModel.WXL_Article">
+              <MappingFragment StoreEntitySet="WXL_Article">
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ContentTxt" ColumnName="ContentTxt" />
+                <ScalarProperty Name="Type1" ColumnName="Type1" />
+                <ScalarProperty Name="Type2" ColumnName="Type2" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="AlterTime" ColumnName="AlterTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LookNum" ColumnName="LookNum" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="Isdel" ColumnName="Isdel" />
+                <ScalarProperty Name="ArticleId2" ColumnName="ArticleId2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WXL_Tag">
+            <EntityTypeMapping TypeName="DbModel.WXL_Tag">
+              <MappingFragment StoreEntitySet="WXL_Tag">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="ArticleId2" ColumnName="ArticleId2" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WXL_Users">
+            <EntityTypeMapping TypeName="DbModel.WXL_Users">
+              <MappingFragment StoreEntitySet="WXL_Users">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="SuperAdmin" ColumnName="SuperAdmin" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WXL_MENU">
+            <EntityTypeMapping TypeName="DbModel.WXL_MENU">
+              <MappingFragment StoreEntitySet="WXL_MENU">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Ico" ColumnName="Ico" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WXL_RoleMenu_Mid">
+            <EntityTypeMapping TypeName="DbModel.WXL_RoleMenu_Mid">
+              <MappingFragment StoreEntitySet="WXL_RoleMenu_Mid">
+                <ScalarProperty Name="MenuType" ColumnName="MenuType" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WXL_Role">
+            <EntityTypeMapping TypeName="DbModel.WXL_Role">
+              <MappingFragment StoreEntitySet="WXL_Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WXL_UserMenu_Mid">
+            <EntityTypeMapping TypeName="DbModel.WXL_UserMenu_Mid">
+              <MappingFragment StoreEntitySet="WXL_UserMenu_Mid">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WXL_UserRole_Mid">
+            <EntityTypeMapping TypeName="DbModel.WXL_UserRole_Mid">
+              <MappingFragment StoreEntitySet="WXL_UserRole_Mid">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

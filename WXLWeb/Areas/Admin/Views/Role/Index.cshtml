@@ -1,0 +1,268 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>角色管理</title>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap-table.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-table.min.js"></script>
+    <script src="~/Scripts/bootstrap-table-zh-CN.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrapValidator.min.js"></script>
+    <link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-confirm.min.js"></script>
+</head>
+<body>
+    <div> 
+        角色管理
+    </div>
+    <div id="toolbar">
+        <button type="button" class="btn btn-primary btn-sm" onclick="addRoleShow()">
+            <span class="fa fa-plus"></span> 增加
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="editRoleShow()">
+            <span class="fa fa fa-pencil"></span> 修改
+        </button>
+        <button type="button" class="btn btn-warning btn-sm" onclick="updateUserState()">
+            <span class="fa fa fa-remove"></span> 删除
+        </button>
+        <button type="button" class="btn btn-success btn-sm" onclick="search()">
+            <span class="fa fa-search"></span>查找
+        </button>
+    </div>
+     <table id="tb_role"></table>
+    <!-- 模态框增加角色（Modal） -->
+    <div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">角色增加</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addRoleForm" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="RoleName" class="col-sm-2 control-label"><span class="must">*</span>角色名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="RoleName" name="RoleName" placeholder="名称长度不超过10位">
+                            </div>
+                        </div>                      
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="addRoleSub()">提交</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- 模态框修改角色（Modal） -->
+    <div class="modal fade" id="EditRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">角色修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="EditRoleForm" class="form-horizontal" role="form">
+                        <input type="hidden" name="Id" />
+                        <div class="form-group">
+                            <label for="Id" class="col-sm-2 control-label">Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Id" name="Id" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="RoleName" class="col-sm-2 control-label"><span class="must">*</span>角色名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="EditRoleName" name="RoleName" placeholder="名称长度不超过10位">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="addRoleSub()">提交</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</body>
+</html>
+<script type="text/javascript">
+
+    $(function () {
+        //1.初始化Table
+        var oTable = new TableInit();
+        oTable.Init();
+
+    });
+    var table = $("#tb_role");
+
+    var TableInit = function () {
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#tb_role').bootstrapTable({
+                url: '/Admin/Role/GetList',         //请求后台的URL（*）
+                method: 'get',                      //请求方式（*）
+                toolbar: '#toolbar',                //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: false,                     //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                queryParams: oTableInit.queryParams,//传递参数（*）
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber: 1,                       //初始化加载第一页，默认第一页
+                pageSize: 5,                       //每页的记录行数（*）
+                pageList: [5,10, 25, 50, 100],        //可供选择的每页的行数（*）
+               // search: true,                       //是否显示表格搜索
+                strictSearch: true,
+                showColumns: true,                  //是否显示所有的列
+                showRefresh: true,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: true,                //是否启用点击选中行
+                // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                   //是否显示父子表
+                columns: [{
+                    checkbox: true
+                }, {
+                    field: 'Id',
+                    title: 'Id'
+                }, {
+                    field: 'RoleName',
+                    title: '角色名称'
+                }]
+            });
+        };
+        //得到查询的参数
+        oTableInit.queryParams = function (params) {
+            var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                PageSize: params.limit,   //页面大小
+                PageIndex: params.offset,  //页码
+            };
+            return temp;
+        };
+        return oTableInit;
+    };
+
+    //增加弹出框
+    function addRoleShow() {
+        $('#addRoleModal').modal({
+            keyboard: true
+        })
+    }
+    //增加角色提交
+    function addRoleSub() {
+        var form = $('#addRoleForm');
+        //增加校验规则
+        formValidator(form);
+        //检验输入是否合法
+        var bootstrapValidator = $('#addRoleForm').data('bootstrapValidator');
+        //手动触发验证
+        bootstrapValidator.validate();
+        if (bootstrapValidator.isValid()) {
+            //表单序列化
+            var data = $('#addRoleForm').serializeArray();
+            //表单提交
+            $.post('/Admin/Role/AddRole', data, function (d) {
+                if (!!d) {
+                    if (d.Code == "0") {
+                        //增加成功，刷新数据
+                        table.bootstrapTable('refresh');
+                        //关闭模态框
+                        $('#addRoleModal').modal('hide')
+                    }
+                    else {
+                        //弹出错误提示
+                        $.confirm({
+                            title: '提示',
+                            content: d.Msg,
+                            type: 'red',
+                            typeAnimate: true,
+                            buttons: {
+                                tryAgain: {
+                                    text: '确定',
+                                    btnClass: 'btn-red'
+                                }
+                            }
+                        })
+
+                    }
+                }
+            })
+        }
+    }
+    //增加角色校验
+    function formValidator(form) {
+        form.bootstrapValidator({
+            message: '输入的值没通过验证',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                RoleName: {
+                    message: '角色名格式不正确',
+                    validators: {
+                        notEmpty: {
+                            message: '角色名不能为空'
+                        },
+                        stringLength: {
+                            min: 1,
+                            max: 10,
+                            message: '角色名长度不超过10位'
+                        }
+                    }
+                }
+            }
+        });
+    }
+    //修改弹出框
+    function editRoleShow() {
+        //获取选中的全部行
+        var selRows = table.bootstrapTable('getAllSelections');
+        //判断选中了多少条记录
+        if(selRows.length<=0||selRows.length>1)
+        {
+            //弹出错误提示
+            $.confirm({
+                title: '提示',
+                content: '请选择一条数据',
+                type: 'orange',
+                typeAnimate: true,
+                buttons: {
+                    ok: {
+                        text: '确定',
+                        btnClass: 'btn-orange'
+                    }
+                }
+            })
+            return;
+        }
+        //获取选中的一行记录
+        var selRow = table.bootstrapTable('getSelections');
+
+        //$('#EditRoleModal').modal({
+        //    keyboard: true
+        //})
+    }
+</script>

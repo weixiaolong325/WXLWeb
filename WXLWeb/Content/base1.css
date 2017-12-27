@@ -1,0 +1,19 @@
+﻿/*-----------------公共---------------*/
+.navbar-header .navbar-brand img{
+    height:100%;
+}
+.home-header{
+    padding-top:10px;
+    height:70px;
+    background: #fff;
+    border-width: 0;
+    box-shadow: 0 0 4px 0 #ccc;
+}
+.home-header .navbar-nav>li, .home-header .navbar-nav>li.active>a, .home-header .navbar-nav>li.active>a:focus, .home-header .navbar-nav>li.active>a:hover, .home-header .navbar-nav>li>a:focus, .home-header .navbar-nav>li>a:hover{
+    color: #08bf91;
+    background: none;
+}
+ .home-header .navbar-nav > li > a {
+     font-size:16px;
+    }
+

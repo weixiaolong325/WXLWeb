@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+@model WXLWeb.ViewModels.ArticleView
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>文章列表</title>
+    <link href="~/Content/Post.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <table id="al_tb">
+            <thead class="al_tb_th">
+                <tr><td>文章ID</td><td>文章标题</td><td>类别</td><td>创建时间</td><td>编辑人</td><td>操作</td></tr>
+            </thead>
+            <tbody>
+                @if (Model.Articles != null)
+                {
+                    int i = 1;
+                    foreach (var article in Model.Articles)
+                    {
+                        if(i%2==0)
+                        {
+                        <tr>
+                            <td>@article.ArticleId</td>
+                            <td><a href="javascript:void();">@article.Title</a></td>
+                    
+                        @if (article.Type1 ==2) {<td>生活记录</td>}
+                        else if (article.Type1 ==3) {<td>学海无涯</td> }
+                            else if (article.Type1 ==1) {<td>技术分享</td> }
+                   <td>@article.CreateTime</td>
+                    <td>@article.UserName</td>
+                    <td><a href="@Url.Action("AlterArticle", "WebManagement", new {id=article.ArticleId })">修改</a>&nbsp;<a href="javascript:void();">删除</a></td>
+                </tr>
+                }
+                else {
+                            <tr class="al_tb_tr2">
+                            <td>@article.ArticleId</td>
+                            <td><a href="javascript:void();">@article.Title</a></td>
+                     @if (article.Type1 ==2) {<td>生活记录</td>}
+                        else if (article.Type1 ==3) {<td>学海无涯</td> }
+                            else if (article.Type1 ==1) {<td>技术分享</td> }
+                                <td>@article.CreateTime</td>
+                    <td>@article.UserName</td>
+                    <td><a href="@Url.Action("AlterArticle", "WebManagement", new {id=article.ArticleId })">修改</a>&nbsp;<a onclick="return tipDelete();" href="@Url.Action("DeleteArticle", "WebManagement", new {id=article.ArticleId2 })">删除</a></td>
+                </tr>
+                        }
+                        i++;
+                    } 
+                    <tr><td colspan="6"> @ViewBag.page</td></tr>
+                }
+               @* <tr><td>1</td
+                    ><td><a href="javascript:void();">这是一个测试文章</a></td>
+                    <td>生活</td><td>2012-12-10</td>
+                    <td>韦小龙</td>
+                    <td><a href="javascript:void();">修改</a>&nbsp;<a href="javascript:void();">删除</a></td>
+                </tr>
+                 <tr  class="al_tb_tr2"><td>2</td>
+                     <td><a href="javascript:void();">这是一个测试文章</a></td>
+                    <td>生活</td><td>2012-12-10 12:42:12</td>
+                    <td>韦小龙</td>
+                    <td><a href="javascript:void();">修改</a>&nbsp;<a href="javascript:void();">删除</a></td>
+                </tr>*@
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function tipDelete()
+    {
+        if (!confirm("确定要删除?"))
+        {
+            return false;
+        }
+       
+    }
+</script>

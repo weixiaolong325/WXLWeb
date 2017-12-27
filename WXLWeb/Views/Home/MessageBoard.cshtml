@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="Shortcut Icon" href="/Images/title.ico" />
+    <title>留言板-韦小龙个人博客-个人网站</title>
+    <link href="~/Content/Base.css" rel="stylesheet" />
+        <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
+    <script src="~/Scripts/MyJs.js"></script>
+</head>
+<body onload="active_li_messageboard();">
+     <div id="top">
+    @{Html.RenderPartial("Head");}
+    <div id="l_top">
+    
+    </div>
+         </div> 
+    <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">留言板</span>
+       </div><div id="nav_txt_right">你是我生命中重要的过客,留下点什么吧~</div><div class="clear"></div>
+    </div>
+    <div id="l_body">
+        <div id="body_left">
+            <!--PC和WAP自适应版(畅言)-->
+            <div id="SOHUCS" sid="messageBoard"></div>
+            <script type="text/javascript">
+(function(){
+var appid = 'cyt3cL2JJ';
+var conf = 'prod_2a6e81a5f2e83a86f9f64848ec7f17db';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+            </div>
+        @{Html.RenderPartial("MeInfo");}
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
+

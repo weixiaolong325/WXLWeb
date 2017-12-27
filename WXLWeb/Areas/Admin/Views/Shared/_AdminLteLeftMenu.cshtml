@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+@using WXL.ViewModel
+@model List<MenuVModel>
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/Content/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+                <p>@ViewBag.userName</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." />
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">后台管理</li>
+           @foreach (var item in Model)
+           {
+            <li class="treeview">
+                <a href="#">
+                    <i class="@item.Ico"></i> <span>@item.MenuName</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                @if (item.Childs.Count > 0)
+                {
+                    <ul class="treeview-menu">
+                        @foreach(var child in item.Childs)
+                        {
+                        <li><a href="@child.Url" target="menuFrame"><i class="@child.Ico"></i>@child.MenuName</a></li>
+                        }
+                        </ul>
+                        }
+</li>
+                }
+</ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+

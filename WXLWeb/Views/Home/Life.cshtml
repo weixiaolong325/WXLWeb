@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+@model WXLWeb.ViewModels.ArticleView
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+     <link rel="Shortcut Icon" href="/Images/title.ico" />
+    <title>生活记录</title>
+    <link href="~/Content/Base.css" rel="stylesheet" />
+     <script src=" http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
+     <script src="~/Scripts/MyJs.js"></script>
+</head>
+<body onload="active_li_life()">
+     <div id="top">
+      @{Html.RenderPartial("Head");}
+   <div id="l_top">
+    
+    </div>
+         </div> 
+    <div id="nav_txt"><div id="nav_txt_left">当前位置:<span class="sp_blank"></span><a href="@Url.Action("Index","Home")">首页</a><span class="sp_blank"></span>><span class="sp_blank"></span><span class="txtDefault">生活记录</span>
+       </div><div id="nav_txt_right">珍惜生活的每点每滴~</div><div class="clear"></div>
+    </div>
+     <div id="s_body">
+        <div id="s_body_left">
+            @if(Model.Articles!=null)
+            {
+            foreach(var article in Model.Articles)
+            {
+            <div class="article_list">
+                 <div class="article_list_title"><a href="@Url.Action("Article", "Home", new { id =article.ArticleId+".html"})">@article.Title</a></div>
+                <div class="article_list_info">发布时间:@article.CreateTime<span class="sp_blank"></span> 
+                    作者: <a class="s_authname" href="javascript:void()">@article.UserName</a><span class="sp_blank"></span> [<a class="s_type" href="javascript:void()">@article.Type2</a>]</div>
+                <div class="article_list_content">
+              摘要: @article.Abstract...
+                    <a class="article_readmore" href="@Url.Action("Article", "Home", new { id =article.ArticleId+".html"})">阅读全文</a>
+                </div>
+            </div> 
+            }
+             @ViewBag.page
+            }
+            else
+            { <p style="text-align:center;">暂无内容~</p>}
+             </div>
+          @{Html.RenderPartial("MyTags");}
+            @* <div id="s_body_right"><h2 style="text-align:center">分类</h2>
+         <p style="margin-left:10px;"><a href="javascript:void()">1.尝尝美食</a></p>
+                  <p style="margin-left:10px;"><a href="javascript:void()">2.悠闲放松</a></p>
+                  <p style="margin-left:10px;"><a href="javascript:void()">3.哪里好玩到哪里</a></p>
+                 </div>*@
+     <div class="clear"></div>
+     </div> 
+</body>
+</html>

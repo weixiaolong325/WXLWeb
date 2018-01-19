@@ -15,5 +15,11 @@ namespace WXL.IBLL
         /// <param name="userId"></param>
         /// <returns></returns>
         IQueryable<WXL_Role> GetRoleByUserId(int userId);
+        /// <summary>
+        /// 批量删除角色
+        /// </summary>
+        /// <param name="Ids"></param>
+        /// <returns></returns>
+        bool DeleteEntities(List<int> Ids);
     }
 }

@@ -210,5 +210,15 @@ namespace Common
         {
             return int.Parse(str);
         }
+        /// <summary>
+        /// 根据跳过的页数计算当前页
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public static int GetPageIndex(int offset,int pageSize)
+        {
+            return offset / pageSize + 1;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace WXLWeb.Areas.Admin.Controllers
         // GET: Admin/Base
         public WXL_Users loginUser { get; set; }
         /// <summary>
-        /// 进入控制器前先执行这个方法
+        /// 进入控制器前会先执行这个方法
         /// </summary>
         /// <param name="filterContext"></param>
        protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -24,10 +24,10 @@ namespace WXLWeb.Areas.Admin.Controllers
             {
                 string sessionId = Request.Cookies[Setting.sessionId].Value;
                 //根据该值查redis
-                WXL_Users obj = CachedHelper.GetCached<WXL_Users>(sessionId);
-                if(obj!=null)
+                WXL_Users user = CachedHelper.GetCached<WXL_Users>(sessionId);
+                if(user!=null)
                 {
-                    loginUser = obj;
+                    loginUser = user;
                     isSuccess = true;
                     //模拟滑动过期时间
                     CachedHelper.SetCached<WXL_Users>(sessionId, loginUser, DateTime.Now.AddMinutes(20));
@@ -41,7 +41,7 @@ namespace WXLWeb.Areas.Admin.Controllers
             }
             if (!isSuccess)
             {
-                filterContext.Result = Redirect("/Admin/User/Login");//注意.
+                filterContext.Result = Redirect("/Admin/User/Login");//跳到登录页
             }
         }
     }

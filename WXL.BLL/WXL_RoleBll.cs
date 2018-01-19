@@ -15,5 +15,23 @@ namespace WXL.BLL
         {
            return this.CurrentDBSession.WXL_RoleDal.GetRoleByUserId(userId);
         }
+        /// <summary>
+        /// 批量删除角色
+        /// </summary>
+        /// <param name="Ids"></param>
+        /// <returns></returns>
+        public bool DeleteEntities(List<int> Ids)
+        {
+
+            //查出要删除的数据
+            var Roles = this.CurrentDBSession.WXL_RoleDal.LoadEntities(r => Ids.Contains(r.Id));
+            //循环删除
+            foreach(var role in Roles)
+            {
+                this.CurrentDBSession.WXL_RoleDal.DeleteEntity(role);
+            }
+            //提交删除
+            return this.CurrentDBSession.SaveChanges();
+        }
     }
 }

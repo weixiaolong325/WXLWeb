@@ -22,9 +22,6 @@
     <script src="~/Scripts/jquery-confirm.min.js"></script>
 </head>
 <body>
-    <div> 
-        角色管理
-    </div>
     <div id="toolbar">
         <button type="button" class="btn btn-primary btn-sm" onclick="addRoleShow()">
             <span class="fa fa-plus"></span> 增加
@@ -32,12 +29,18 @@
         <button type="button" class="btn btn-primary btn-sm" onclick="editRoleShow()">
             <span class="fa fa fa-pencil"></span> 修改
         </button>
-        <button type="button" class="btn btn-warning btn-sm" onclick="updateUserState()">
+        <button type="button" class="btn btn-warning btn-sm" onclick="DeleteRole()">
             <span class="fa fa fa-remove"></span> 删除
         </button>
         <button type="button" class="btn btn-success btn-sm" onclick="search()">
             <span class="fa fa-search"></span>查找
         </button>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-12">
+            <label>角色名:</label>
+            <input type="text" name="RoleName" id="RoleName" />
+        </div>
     </div>
      <table id="tb_role"></table>
     <!-- 模态框增加角色（Modal） -->
@@ -68,7 +71,7 @@
     <!-- /.modal -->
 
     <!-- 模态框修改角色（Modal） -->
-    <div class="modal fade" id="EditRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,12 +79,11 @@
                     <h4 class="modal-title" id="myModalLabel">角色修改</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="EditRoleForm" class="form-horizontal" role="form">
-                        <input type="hidden" name="Id" />
+                    <form id="editRoleForm" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="Id" class="col-sm-2 control-label">Id</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Id" name="Id" readonly>
+                                <input type="text" class="form-control" id="EditId" name="Id" readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -94,7 +96,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="addRoleSub()">提交</button>
+                    <button type="button" class="btn btn-primary" onclick="editRoleSub()">修改</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -128,8 +130,8 @@
                 queryParams: oTableInit.queryParams,//传递参数（*）
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 pageNumber: 1,                       //初始化加载第一页，默认第一页
-                pageSize: 5,                       //每页的记录行数（*）
-                pageList: [5,10, 25, 50, 100],        //可供选择的每页的行数（*）
+                pageSize: 10,                       //每页的记录行数（*）
+                pageList: [10, 20, 50],        //可供选择的每页的行数（*）
                // search: true,                       //是否显示表格搜索
                 strictSearch: true,
                 showColumns: true,                  //是否显示所有的列
@@ -259,10 +261,125 @@
             return;
         }
         //获取选中的一行记录
-        var selRow = table.bootstrapTable('getSelections');
-
-        //$('#EditRoleModal').modal({
-        //    keyboard: true
-        //})
+        var selRow = table.bootstrapTable('getSelections')[0];
+        //给修改框赋值
+        $("#EditId").val(selRow.Id);
+        $("#EditRoleName").val(selRow.RoleName);
+        //显示修改框
+        $('#editRoleModal').modal({
+            keyboard: true
+        })
     }
+    //修改角色提交
+    function editRoleSub() {
+        var form = $('#editRoleModal');
+        //增加校验规则
+        formValidator(form);
+        //检验输入是否合法
+        var bootstrapValidator = $('#editRoleModal').data('bootstrapValidator');
+        //手动触发验证
+        bootstrapValidator.validate();
+        if (bootstrapValidator.isValid()) {
+            //表单序列化
+            var data = $('#editRoleForm').serializeArray();
+            //表单提交
+            $.post('/Admin/Role/EditRole', data, function (d) {
+                if (!!d) {
+                    if (d.Code == "0") {
+                        //增加成功，刷新数据
+                        table.bootstrapTable('refresh');
+                        //关闭模态框
+                        $('#editRoleModal').modal('hide')
+                    }
+                    else {
+                        //弹出错误提示
+                        $.confirm({
+                            title: '提示',
+                            content: d.Msg,
+                            type: 'red',
+                            typeAnimate: true,
+                            buttons: {
+                                tryAgain: {
+                                    text: '确定',
+                                    btnClass: 'btn-red'
+                                }
+                            }
+                        })
+
+                    }
+                }
+            })
+        }
+    }
+    //删除角色
+    function DeleteRole() {
+        //获取选中的全部行
+        var selRows = table.bootstrapTable('getAllSelections');
+        //判断选中了多少条记录
+        if (selRows.length <= 0) {
+            //弹出错误提示
+            $.confirm({
+                title: '提示',
+                content: '请选择要删除的数据',
+                type: 'orange',
+                typeAnimate: true,
+                buttons: {
+                    ok: {
+                        text: '确定',
+                        btnClass: 'btn-orange'
+                    }
+                }
+            })
+            return;
+        }
+        //提示是否要删除
+        $.confirm({
+            title: '提示',
+            content: '确认删除?',
+            type: 'primary',
+            typeAnimate: true,
+            buttons: {
+                ok: {
+                    text: '确定',
+                    btnClass: 'btn-primary',
+                    action: function () {
+                        //遍历取到选中的Id
+                        var Ids = new Array();
+                        selRows.forEach(function(item,i)
+                        {
+                            Ids.push(item.Id)                          
+                        })
+                        //掉接口删除
+                        $.post('/Admin/Role/DeleteRole', { Ids: Ids }, function (d) {
+                            if (!!d) {
+                                if (d.Code == "0") {
+                                    //删除成功，刷新数据
+                                    table.bootstrapTable('refresh');
+                                }
+                                else {
+                                    //弹出错误提示
+                                    $.confirm({
+                                        title: '提示',
+                                        content: d.Msg,
+                                        type: 'red',
+                                        typeAnimate: true,
+                                        buttons: {
+                                            tryAgain: {
+                                                text: '确定',
+                                                btnClass: 'btn-red'
+                                            }
+                                        }
+                                    })
+
+                                }
+                            }
+                        })
+
+                    }
+                }
+            }
+        })
+     
+     
+    }   
 </script>

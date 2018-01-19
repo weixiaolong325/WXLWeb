@@ -18,7 +18,6 @@ namespace WXL.DALFactory
         {
             get { return DbContextFactory.CreateContext(); }
         }
-        public string dgd;
        
         //private IUsersDal _UsersDal;
         //public IUsersDal UsersDal

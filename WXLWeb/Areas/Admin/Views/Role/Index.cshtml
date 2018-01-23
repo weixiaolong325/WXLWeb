@@ -22,86 +22,92 @@
     <script src="~/Scripts/jquery-confirm.min.js"></script>
 </head>
 <body>
-    <div id="toolbar">
-        <button type="button" class="btn btn-primary btn-sm" onclick="addRoleShow()">
-            <span class="fa fa-plus"></span> 增加
-        </button>
-        <button type="button" class="btn btn-primary btn-sm" onclick="editRoleShow()">
-            <span class="fa fa fa-pencil"></span> 修改
-        </button>
-        <button type="button" class="btn btn-warning btn-sm" onclick="DeleteRole()">
-            <span class="fa fa fa-remove"></span> 删除
-        </button>
-        <button type="button" class="btn btn-success btn-sm" onclick="search()">
-            <span class="fa fa-search"></span>查找
-        </button>
-    </div>
-    <div class="row">
-        <div class="col-sm-4 col-xs-12">
-            <label>角色名:</label>
-            <input type="text" name="RoleName" id="RoleName" />
+        <div class="panel panel-default">
+            <div class="panel-heading">查询条件</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="roleNameSearch">角色名称</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="roleNameSearch">
+                        </div>                                           
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-     <table id="tb_role"></table>
-    <!-- 模态框增加角色（Modal） -->
-    <div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">角色增加</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="addRoleForm" class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label for="RoleName" class="col-sm-2 control-label"><span class="must">*</span>角色名</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="RoleName" name="RoleName" placeholder="名称长度不超过10位">
+        <div id="toolbar">
+            <button type="button" class="btn btn-primary btn-sm" onclick="addRoleShow()">
+                <span class="fa fa-plus"></span> 增加
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="editRoleShow()">
+                <span class="fa fa fa-pencil"></span> 修改
+            </button>
+            <button type="button" class="btn btn-warning btn-sm" onclick="DeleteRole()">
+                <span class="fa fa fa-remove"></span> 删除
+            </button>
+            <button type="button" class="btn btn-success btn-sm" onclick="search()">
+                <span class="fa fa-search"></span>查找
+            </button>
+        </div>
+        <table id="tb_role"></table>
+        <!-- 模态框增加角色（Modal） -->
+        <div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">角色增加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addRoleForm" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="RoleName" class="col-sm-2 control-label"><span class="must">*</span>角色名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="RoleName" name="RoleName" placeholder="名称长度不超过10位">
+                                </div>
                             </div>
-                        </div>                      
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="addRoleSub()">提交</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
-    <!-- 模态框修改角色（Modal） -->
-    <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">角色修改</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="editRoleForm" class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label for="Id" class="col-sm-2 control-label">Id</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="EditId" name="Id" readonly>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="addRoleSub()">提交</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <!-- 模态框修改角色（Modal） -->
+        <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">角色修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editRoleForm" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="Id" class="col-sm-2 control-label">Id</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="EditId" name="Id" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="RoleName" class="col-sm-2 control-label"><span class="must">*</span>角色名</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="EditRoleName" name="RoleName" placeholder="名称长度不超过10位">
+                            <div class="form-group">
+                                <label for="RoleName" class="col-sm-2 control-label"><span class="must">*</span>角色名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="EditRoleName" name="RoleName" placeholder="名称长度不超过10位">
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="editRoleSub()">修改</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="editRoleSub()">修改</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
 </body>
 </html>
 <script type="text/javascript">
@@ -110,7 +116,6 @@
         //1.初始化Table
         var oTable = new TableInit();
         oTable.Init();
-
     });
     var table = $("#tb_role");
 
@@ -159,6 +164,7 @@
             var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 PageSize: params.limit,   //页面大小
                 PageIndex: params.offset,  //页码
+                RoleName: $("#roleNameSearch").val()
             };
             return temp;
         };
@@ -381,5 +387,10 @@
         })
      
      
-    }   
+    }
+
+    //查询
+    function search() {
+        table.bootstrapTable('refresh');
+    }
 </script>
